@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ferrum Steel — Homepage (v1)
 
-## Getting Started
+Marketing homepage for **Ferrum Steel**, a fictional structural-steel and
+pre-engineered-building manufacturer. Built from `plan.md` in this repo,
+which is the full spec (sitemap, copy, component breakdown, design system).
 
-First, run the development server:
+> `Ferrum Steel` is a placeholder brand name chosen for this build — see
+> "Before launch" below for what to swap once a real brand is supplied.
+
+## Stack
+
+- Next.js 16 (App Router) + TypeScript
+- Tailwind CSS v3 (`tailwind.config.ts` is the source of design tokens)
+- `lucide-react` for icons
+- `next/font/google` — Oswald (headings) + Inter (body)
+- `next/image` throughout, including local SVG placeholder images
+
+## Getting started
+
+Requires Node 20.9+ (Next.js 16 minimum).
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Other scripts:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build   # production build (Turbopack)
+npm run start   # serve the production build
+npm run lint    # ESLint
+```
 
-## Learn More
+## Project structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/                   # layout.tsx, page.tsx, globals.css, sitemap.ts, robots.ts, OG image
+components/
+  layout/               # TopBar, Header, Nav, NavDropdown (v2), MobileMenu, Footer
+  sections/             # Hero, ProductGrid, FeaturedProjects, LeadershipQuote,
+                         # AboutTeaser, ServicesSection, NewsList, ContactCTA, ...
+  ui/                   # Button, SectionHeading, Container, Badge
+lib/
+  data/                 # nav.ts, products.ts, projects.ts, services.ts, news.ts
+  constants.ts          # brand name, contact info, social links
+  types.ts
+public/images/          # local SVG placeholder images (hero/products/projects/leadership/about)
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+v1 ships a single homepage with in-page anchor sections (`#about`,
+`#products`, `#services`, `#projects`, `#news`, `#contact`). `lib/data/nav.ts`
+is the single source of truth for nav items — flipping `isRoute` + `href`
+there is the only change needed once v2 standalone routes exist.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## What's stubbed / not wired up
 
-## Deploy on Vercel
+- **Contact form** (`components/sections/ContactForm.tsx`): UI + client-side
+  validation only. Submitting shows a confirmation state but sends nothing
+  anywhere. Wire it to Formspree or a Route Handler + email service (Resend,
+  etc.) before launch.
+- **Placeholder images**: `public/images/**` are locally generated SVG
+  gradient blocks (brand-colored, correctly sized/aspect-ratioed), not real
+  photography. Swap the files in place — `next/image` usage, sizing, and
+  aspect ratios are already correct.
+- **Favicon**: default Next.js icon (`app/favicon.ico`). Replace with a real
+  favicon set once a logo exists.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Before launch
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See `plan.md` Section 8 for the full checklist. In short: real brand name,
+logo, product/project photography, leadership photo/bio, real contact
+details, verified certifications, legal copy (Privacy Policy / Terms), and a
+domain — then re-point `lib/constants.ts` and `lib/data/*.ts` at the real
+content.

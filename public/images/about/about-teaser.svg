@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="750" viewBox="0 0 1000 750" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="grad-about" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1C2229" />
+      <stop offset="100%" stop-color="#D68C0A" />
+    </linearGradient>
+    <pattern id="diag-about" width="28" height="28" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="28" stroke="rgba(255,255,255,0.06)" stroke-width="14" />
+    </pattern>
+  </defs>
+  <rect width="1000" height="750" fill="url(#grad-about)" />
+  <rect width="1000" height="750" fill="url(#diag-about)" />
+  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="45" fill="rgba(255,255,255,0.85)" font-weight="600">About Image Placeholder</text>
+</svg>

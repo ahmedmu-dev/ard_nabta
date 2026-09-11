@@ -6,24 +6,27 @@ interface ProductCardProps {
 }
 
 /**
- * Single product image/name/description card.
- * plan.md 6.5: surface bg, rounded-lg, fixed aspect-[4/3] image, hover lift.
+ * Product tile — sits in a gap-px blueprint grid (parent supplies rules).
  */
 export default function ProductCard({ product }: ProductCardProps) {
   return (
-    <article className="group overflow-hidden rounded-lg border border-surface bg-white shadow-sm transition-all duration-150 hover:-translate-y-1 hover:shadow-md">
-      <div className="relative aspect-[4/3] w-full overflow-hidden">
+    <article className="group bg-surface">
+      <div className="relative aspect-[4/3] w-full overflow-hidden border-b border-rule">
         <Image
           src={product.image.src}
           alt={product.image.alt}
           fill
           sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-          className="object-cover transition-transform duration-200 group-hover:scale-105"
+          className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
         />
       </div>
-      <div className="p-6">
-        <h3 className="text-lg font-medium text-heading">{product.name}</h3>
-        <p className="mt-2 text-sm text-body">{product.description}</p>
+      <div className="p-6 md:p-7">
+        <h3 className="font-heading text-lg font-semibold uppercase tracking-wide text-heading">
+          {product.name}
+        </h3>
+        <p className="mt-3 text-sm leading-relaxed text-body">
+          {product.description}
+        </p>
       </div>
     </article>
   );

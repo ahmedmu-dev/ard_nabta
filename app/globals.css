@@ -5,29 +5,113 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 6.5rem;
+    scroll-padding-top: 5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+
   }
 
   body {
-    @apply bg-background font-body text-body antialiased;
+    @apply bg-paper font-body text-muted antialiased;
   }
 
   h1,
   h2,
   h3,
   h4 {
-    @apply font-heading text-heading;
+    @apply font-display text-ink;
+    text-wrap: balance;
   }
 
-  /*
-   * Default focus ring: dark ring on a white offset for elements on light
-   * backgrounds (most of the page). An amber ring only hits ~2:1 contrast
-   * against white (fails the 3:1 minimum for focus indicators), so this
-   * uses `primary` instead. Elements on dark backgrounds (TopBar, Footer,
-   * Button's secondary-on-dark) explicitly override to a white ring/dark
-   * offset — see those components.
-   */
   :focus-visible {
-    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-white;
+    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-paper;
+  }
+}
+
+@layer utilities {
+  .rule-2 {
+    border-width: 2px;
+    border-color: currentColor;
+  }
+
+  .display-xl {
+    @apply font-display uppercase leading-[0.88] tracking-[-0.04em];
+    font-size: clamp(2.75rem, 9vw, 7.5rem);
+  }
+
+  .display-lg {
+    @apply font-display uppercase leading-[0.9] tracking-[-0.03em];
+    font-size: clamp(2rem, 5.5vw, 4.5rem);
+  }
+
+  .meta {
+    @apply font-mono text-[0.7rem] uppercase tracking-[0.18em];
+  }
+
+  .site-pad {
+    @apply mx-auto w-full max-w-site px-5 md:px-8;
+  }
+
+  /* Nav underline draw: accent rule from left */
+  .nav-link {
+    position: relative;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.2rem;
+    height: 2px;
+    width: 100%;
+    background-color: #ff6a00;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .nav-link:hover::after,
+  .nav-link:focus-visible::after,
+  .nav-link.is-active::after {
+    transform: scaleX(1);
+  }
+
+  /* Media hover zoom: clipped, sharp, no float */
+  .media-frame {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .media-frame img {
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+
+  .media-frame:hover img {
+    transform: scale(1.04);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav-link::after {
+      transition: none;
+    }
+
+    .media-frame img,
+    .media-frame:hover img {
+      transition: none;
+      transform: none;
+    }
   }
 }

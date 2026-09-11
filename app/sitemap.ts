@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/constants";
 
-// v1: homepage only. Add each v2 route here as it's built.
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
@@ -9,6 +8,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,
+    },
+    {
+      url: `${SITE_URL}/projects`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${SITE_URL}/work-with-us`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
     },
   ];
 }

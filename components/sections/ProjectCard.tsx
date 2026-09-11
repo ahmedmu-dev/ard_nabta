@@ -6,25 +6,26 @@ interface ProjectCardProps {
   project: Project;
 }
 
-/**
- * Single project thumbnail/name/sector/one-liner card.
- */
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <article className="group overflow-hidden rounded-lg border border-surface bg-white shadow-sm transition-all duration-150 hover:-translate-y-1 hover:shadow-md">
-      <div className="relative aspect-[4/3] w-full overflow-hidden">
+    <article className="group bg-surface">
+      <div className="relative aspect-[4/3] w-full overflow-hidden border-b border-rule">
         <Image
           src={project.image.src}
           alt={project.image.alt}
           fill
           sizes="(min-width: 1024px) 50vw, 100vw"
-          className="object-cover transition-transform duration-200 group-hover:scale-105"
+          className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
         />
       </div>
-      <div className="p-6">
+      <div className="p-6 md:p-8">
         <Badge>{project.sector}</Badge>
-        <h3 className="mt-3 text-lg font-medium text-heading">{project.name}</h3>
-        <p className="mt-2 text-sm text-body">{project.oneLiner}</p>
+        <h3 className="mt-4 font-heading text-xl font-semibold uppercase tracking-wide text-heading">
+          {project.name}
+        </h3>
+        <p className="mt-3 max-w-[48ch] text-sm leading-relaxed text-body">
+          {project.oneLiner}
+        </p>
       </div>
     </article>
   );

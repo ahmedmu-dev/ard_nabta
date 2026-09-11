@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" fill="none">
+  <rect width="1200" height="900" fill="#F2F2F2"/>
+  <rect x="80" y="120" width="520" height="620" fill="#0A0A0A"/>
+  <rect x="640" y="280" width="480" height="460" fill="#FF6A00"/>
+  <path d="M80 740 H1120" stroke="#0A0A0A" stroke-width="4"/>
+  <text x="80" y="80" fill="#0A0A0A" font-family="ui-monospace, monospace" font-size="22" letter-spacing="4">ELEVATION</text>
+</svg>

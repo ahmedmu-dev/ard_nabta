@@ -1,50 +1,68 @@
 import type { Product } from "@/lib/types";
 
-/**
- * Ard Nabta's building scope, based on the 3 Dubai Municipality completion
- * certificates supplied (villa new-builds, a majlis/annex, and a villa +
- * boundary wall extension). Confirm the full service list with the company
- * before treating this as exhaustive — see CONTENT_PERSONALIZATION_PLAN.md.
- */
 export const PRODUCTS: Product[] = [
   {
     slug: "new-villa-construction",
     name: "New Villa Construction",
     description:
-      "Full turnkey villa builds from foundation to handover, managed under Dubai Municipality-licensed permits.",
+      "Turnkey villa builds from foundation through structure, envelope, and Dubai Municipality handover. One licensed contractor owns the programme on site.",
+    highlights: [
+      "G+1 / G+2 villa structures",
+      "Permit coordination with DM",
+      "Full structural & finishing package",
+      "Completion certificate support",
+    ],
     image: {
-      src: "/images/products/new-villa-construction.jpg",
-      alt: "New villa under construction, built by Ard Nabta Building Contracting",
+      src: "/images/products/new-villa-construction.png",
+      alt: "New villa under construction",
     },
   },
   {
     slug: "villa-extensions-annexes",
-    name: "Villa Extensions & Annexes",
+    name: "Extensions & Annexes",
     description:
-      "Majlis additions, family annexes, and approved structural modifications to existing villas.",
+      "Majlis halls, family annexes, and approved structural modifications that expand an existing villa without disrupting daily life more than necessary.",
+    highlights: [
+      "Majlis & guest annex builds",
+      "Modification permits",
+      "Structural tie-ins to existing villa",
+      "External works as required",
+    ],
     image: {
-      src: "/images/products/villa-extensions-annexes.jpg",
-      alt: "Completed villa annex built by Ard Nabta Building Contracting",
+      src: "/images/products/villa-extensions-annexes.png",
+      alt: "Villa annex and extension exterior",
     },
   },
   {
     slug: "interior-fit-out-finishing",
-    name: "Interior Fit-Out & Finishing",
+    name: "Fit-Out & Finishing",
     description:
-      "Flooring, ceilings, bathrooms, and kitchens finished to move-in standard as part of the build.",
+      "Ceilings, wet areas, kitchens, flooring, and MEP finishing carried to move-in standard as part of the same build team.",
+    highlights: [
+      "Bathrooms & wet areas",
+      "False ceilings & lighting",
+      "AC & MEP finishing",
+      "Joinery coordination",
+    ],
     image: {
-      src: "/images/products/interior-fit-out-finishing.jpg",
-      alt: "Finished villa bathroom fit-out by Ard Nabta Building Contracting",
+      src: "/images/products/interior-fit-out-finishing.png",
+      alt: "Finished villa bathroom interior",
     },
   },
   {
     slug: "boundary-walls-external-works",
-    name: "Boundary Walls & External Works",
+    name: "Walls & External Works",
     description:
-      "Perimeter walls, gates, and external works coordinated alongside the main villa build.",
+      "Perimeter walls, gates, landscaping edges, and external hardscape coordinated with the main villa package.",
+    highlights: [
+      "Boundary walls & fencing",
+      "Entrance gates",
+      "External paving & drains",
+      "Site grading support",
+    ],
     image: {
-      src: "/images/products/boundary-walls-external-works.jpg",
-      alt: "Villa boundary wall built by Ard Nabta Building Contracting",
+      src: "/images/products/boundary-walls-external-works.png",
+      alt: "Villa boundary wall and gate",
     },
   },
 ];

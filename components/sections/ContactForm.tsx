@@ -3,14 +3,9 @@
 import { useState, type FormEvent } from "react";
 import Button from "@/components/ui/Button";
 
-/**
- * Controlled contact form UI (name/email/phone/message).
- *
- * v1 scope: front-end only. Submit is stubbed — it validates and shows a
- * confirmation state but does not send data anywhere. Wire this up to
- * Formspree or a Next.js Route Handler + email service (see plan.md
- * Section 2) when the gig moves to v1.5/v2 backend integration.
- */
+const FIELD =
+  "mt-2 w-full rounded-none border-2 border-ink bg-paper px-4 py-3 text-sm text-ink placeholder:text-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2";
+
 export default function ContactForm() {
   const [values, setValues] = useState({
     name: "",
@@ -29,77 +24,50 @@ export default function ContactForm() {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    // TODO(backend): wire this up to Formspree or a Route Handler + email
-    // service. No submission logic exists yet — this is a UI stub only.
     setSubmitted(true);
   }
 
   if (submitted) {
     return (
-      <div
-        role="status"
-        className="rounded-lg border border-surface bg-white p-8 text-center"
-      >
-        <h3 className="text-lg font-medium text-heading">
-          Thanks for reaching out.
+      <div role="status" className="border-2 border-ink bg-paper p-8">
+        <h3 className="font-display text-xl uppercase tracking-tight text-ink">
+          Message received
         </h3>
-        <p className="mt-2 text-sm text-body">
-          Your message has been received. Our team will get back to you
-          shortly.
+        <p className="mt-3 text-sm leading-relaxed text-muted">
+          We will follow up on your project details.
         </p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5 rounded-lg border border-surface bg-white p-8">
+    <form onSubmit={handleSubmit} className="space-y-5 border-2 border-ink bg-paper p-6 md:p-8">
+      {(
+        [
+          ["name", "Name", "text", true],
+          ["email", "Email", "email", true],
+          ["phone", "Phone", "tel", false],
+        ] as const
+      ).map(([id, label, type, required]) => (
+        <div key={id}>
+          <label htmlFor={id} className="meta text-ink">
+            {label}
+            {!required ? " (optional)" : ""}
+          </label>
+          <input
+            id={id}
+            name={id}
+            type={type}
+            required={required}
+            value={values[id]}
+            onChange={handleChange}
+            className={FIELD}
+          />
+        </div>
+      ))}
       <div>
-        <label htmlFor="name" className="block text-sm font-medium text-heading">
-          Name
-        </label>
-        <input
-          id="name"
-          name="name"
-          type="text"
-          required
-          autoComplete="name"
-          value={values.name}
-          onChange={handleChange}
-          className="mt-2 w-full rounded-md border border-surface bg-white px-4 py-2.5 text-sm text-body focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-        />
-      </div>
-      <div>
-        <label htmlFor="email" className="block text-sm font-medium text-heading">
-          Email
-        </label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          required
-          autoComplete="email"
-          value={values.email}
-          onChange={handleChange}
-          className="mt-2 w-full rounded-md border border-surface bg-white px-4 py-2.5 text-sm text-body focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-        />
-      </div>
-      <div>
-        <label htmlFor="phone" className="block text-sm font-medium text-heading">
-          Phone <span className="font-normal text-body">(optional)</span>
-        </label>
-        <input
-          id="phone"
-          name="phone"
-          type="tel"
-          autoComplete="tel"
-          value={values.phone}
-          onChange={handleChange}
-          className="mt-2 w-full rounded-md border border-surface bg-white px-4 py-2.5 text-sm text-body focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-        />
-      </div>
-      <div>
-        <label htmlFor="message" className="block text-sm font-medium text-heading">
-          Message
+        <label htmlFor="message" className="meta text-ink">
+          Project notes
         </label>
         <textarea
           id="message"
@@ -108,11 +76,11 @@ export default function ContactForm() {
           rows={4}
           value={values.message}
           onChange={handleChange}
-          className="mt-2 w-full resize-none rounded-md border border-surface bg-white px-4 py-2.5 text-sm text-body focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          className={`${FIELD} resize-none`}
         />
       </div>
-      <Button type="submit" className="w-full">
-        Send Message
+      <Button type="submit" variant="accent" className="w-full">
+        Send Project Brief
       </Button>
     </form>
   );

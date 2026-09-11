@@ -1,51 +1,80 @@
 import type { Project } from "@/lib/types";
 
-/**
- * Real projects, drawn from the site photos and the 3 Dubai Municipality
- * completion certificates supplied. Certificates name the private property
- * owners — that personal data is intentionally left out (see
- * CONTENT_PERSONALIZATION_PLAN.md); projects are labelled generically by
- * area instead. Replace with owner-approved project names if/when available.
- */
 export const PROJECTS: Project[] = [
   {
     slug: "private-villa-hatta",
-    name: "Private Villa — Hatta",
-    sector: "New Villa Construction",
-    oneLiner: "Ground, first floor, and roof villa build under a Dubai Municipality building permit.",
+    name: "Private Villa - Hatta",
+    sector: "New Build",
+    location: "Hatta, Dubai",
+    year: "2026",
+    oneLiner:
+      "G+1 villa with stone and plaster envelope, large glazing, and Dubai Municipality completion certificate support through handover.",
+    details: [
+      "Full villa structure with roof works",
+      "Stone cladding and envelope finishes",
+      "Wet areas, ceilings, and primary fit-out",
+      "DM completion certificate pathway",
+    ],
     image: {
-      src: "/images/projects/private-villa-hatta.jpg",
-      alt: "Private villa under construction in Hatta, Dubai",
+      src: "/images/samples/project-02/03-photo-2026-09-10-15-41-38.jpg",
+      alt: "Private villa with stone cladding nearing completion in Hatta",
     },
   },
   {
     slug: "family-majlis-annex-hatta",
-    name: "Family Majlis & Annex — Hatta",
-    sector: "New Construction",
-    oneLiner: "Ground-floor family majlis with annex and external works, completed 2024.",
+    name: "Family Majlis & Annex - Hatta",
+    sector: "Annex",
+    location: "Hatta, Dubai",
+    year: "2024",
+    oneLiner:
+      "Single-storey majlis and annex with dark openings, gate works, and external hardscape for a private residential compound.",
+    details: [
+      "Dedicated majlis hall and annex rooms",
+      "Envelope, doors, and gate package",
+      "External works tied to the main plot",
+      "Completed June 2024 under DM completion",
+    ],
     image: {
-      src: "/images/projects/family-majlis-annex-hatta.jpg",
-      alt: "Completed family majlis and annex in Hatta, Dubai",
+      src: "/images/samples/project-04/02-photo-2026-09-10-14-10-33.jpg",
+      alt: "Completed family annex exterior with gate in Hatta",
     },
   },
   {
     slug: "villa-extension-boundary-wall-hatta",
-    name: "Villa Extension & Boundary Wall — Hatta",
-    sector: "Extension & Modification",
-    oneLiner: "Villa expansion with a new boundary wall and annex, completed under a building modification permit.",
+    name: "Extension & Boundary Wall - Hatta",
+    sector: "Modification",
+    location: "Hatta, Dubai",
+    year: "2026",
+    oneLiner:
+      "Approved addition of an extension and wall on an active Hatta plot, coordinated with consultant drawings and Dubai Municipality protocols.",
+    details: [
+      "Structural extension to the existing villa",
+      "New perimeter boundary wall",
+      "Site board and inspection readiness",
+      "Modification permit pathway closed out",
+    ],
     image: {
-      src: "/images/projects/villa-extension-boundary-wall-hatta.jpg",
-      alt: "Villa boundary wall extension in Hatta, Dubai",
+      src: "/images/samples/project-03/03-photo-2026-09-10-14-17-52-4.jpg",
+      alt: "Ard Nabta site board for extension and wall works in Hatta",
     },
   },
   {
-    slug: "villa-interior-fit-out-hatta",
-    name: "Villa Interior Fit-Out — Hatta",
-    sector: "Interior Finishing",
-    oneLiner: "Ceiling, AC, and interior finishing carried through to move-in condition.",
+    slug: "villa-modification-hatta",
+    name: "Villa Modification - Hatta",
+    sector: "Modification",
+    location: "Hatta, Dubai",
+    year: "2026",
+    oneLiner:
+      "White G+1 villa modification with punched openings, roof access, and paved external areas under a building modification certificate.",
+    details: [
+      "Facade and volume modification",
+      "Punched openings and envelope finish",
+      "Roof access and parapet works",
+      "External paving to handover standard",
+    ],
     image: {
-      src: "/images/projects/villa-interior-fit-out-hatta.jpg",
-      alt: "Finished villa interior ceiling and fit-out in Hatta, Dubai",
+      src: "/images/samples/project-01/03-photo-2026-09-10-15-36-14.jpg",
+      alt: "White two-storey villa modification facade in Hatta",
     },
   },
 ];

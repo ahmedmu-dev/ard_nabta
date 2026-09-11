@@ -6,12 +6,12 @@ interface BadgeProps {
 }
 
 /**
- * Small pill used for sector tags, certifications, and "New" labels.
+ * Square industrial tag — sector labels, certifications.
  */
 export default function Badge({ children, className = "" }: BadgeProps) {
   return (
     <span
-      className={`inline-flex items-center rounded-full bg-surface px-3 py-1 font-heading text-xs font-semibold uppercase tracking-wide text-primary ${className}`}
+      className={`inline-flex items-center border border-primary/20 bg-background px-2.5 py-1 font-mono text-[0.65rem] font-medium uppercase tracking-[0.14em] text-primary ${className}`}
     >
       {children}
     </span>

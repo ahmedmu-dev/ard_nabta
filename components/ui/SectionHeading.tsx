@@ -8,8 +8,7 @@ interface SectionHeadingProps {
 }
 
 /**
- * Consistent eyebrow + heading + optional subtext pattern used across
- * homepage sections (plan.md Section 5).
+ * Structural section title: mono eyebrow + condensed display heading.
  */
 export default function SectionHeading({
   eyebrow,
@@ -24,17 +23,13 @@ export default function SectionHeading({
   return (
     <div className={`max-w-2xl ${alignClasses}`}>
       {eyebrow ? (
-        <p
-          className={`mb-3 font-heading text-xs font-semibold uppercase tracking-[0.2em] sm:text-sm ${
-            onDark ? "text-accent" : "text-accent-contrast"
-          }`}
-        >
+        <p className={`meta-label mb-4 ${onDark ? "text-accent" : ""}`}>
           {eyebrow}
         </p>
       ) : null}
       <h2
         id={id}
-        className={`text-2xl font-semibold sm:text-3xl md:text-4xl ${
+        className={`text-3xl font-semibold uppercase tracking-tight sm:text-4xl md:text-[2.75rem] md:leading-[1.05] ${
           onDark ? "text-white" : "text-heading"
         }`}
       >
@@ -42,7 +37,9 @@ export default function SectionHeading({
       </h2>
       {subtext ? (
         <p
-          className={`mt-4 text-base ${onDark ? "text-white/80" : "text-body"}`}
+          className={`mt-5 max-w-[58ch] text-base leading-relaxed ${
+            onDark ? "text-white/75" : "text-body"
+          }`}
         >
           {subtext}
         </p>

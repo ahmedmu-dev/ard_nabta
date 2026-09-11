@@ -69,7 +69,7 @@ export default function MobileMenu() {
         aria-expanded={open}
         aria-controls="mobile-menu"
         aria-label="Open menu"
-        className="flex h-10 w-10 items-center justify-center rounded-md text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+        className="flex h-10 w-10 items-center justify-center text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
       >
         <Menu size={24} aria-hidden="true" />
       </button>
@@ -88,12 +88,12 @@ export default function MobileMenu() {
         role="dialog"
         aria-modal="true"
         aria-label="Mobile navigation"
-        className={`fixed inset-y-0 right-0 z-50 w-full max-w-xs transform bg-white p-6 shadow-xl transition-transform duration-200 ${
+        className={`fixed inset-y-0 right-0 z-50 w-full max-w-xs transform border-l border-rule bg-surface p-6 transition-transform duration-200 ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex items-center justify-between">
-          <span className="font-heading text-sm font-semibold uppercase tracking-wide text-primary">
+        <div className="flex items-center justify-between border-b border-rule pb-4">
+          <span className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-accent-contrast">
             Menu
           </span>
           <button
@@ -101,18 +101,18 @@ export default function MobileMenu() {
             type="button"
             onClick={close}
             aria-label="Close menu"
-            className="flex h-10 w-10 items-center justify-center rounded-md text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            className="flex h-10 w-10 items-center justify-center text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
             <X size={22} aria-hidden="true" />
           </button>
         </div>
-        <ul className="mt-8 flex flex-col gap-1">
+        <ul className="mt-6 flex flex-col">
           {NAV_ITEMS.map((item) => (
-            <li key={item.href}>
+            <li key={item.href} className="border-b border-rule">
               <Link
                 href={item.href}
                 onClick={close}
-                className="block rounded-md px-2 py-3 font-heading text-base font-medium uppercase tracking-wide text-primary hover:bg-surface"
+                className="block px-1 py-4 font-heading text-base font-semibold uppercase tracking-wide text-primary hover:text-accent-contrast"
               >
                 {item.label}
               </Link>
@@ -121,7 +121,7 @@ export default function MobileMenu() {
         </ul>
         <div className="mt-8">
           <Button href="#contact" onClick={close} className="w-full">
-            Get a Quote
+            Request a Quote
           </Button>
         </div>
       </div>

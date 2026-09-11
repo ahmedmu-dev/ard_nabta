@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" fill="none">
+  <rect width="1000" height="750" fill="#F4F4F4"/>
+  <rect x="80" y="180" width="840" height="420" fill="#0A0A0A"/>
+  <rect x="80" y="180" width="280" height="420" fill="#FF6A00"/>
+  <text x="80" y="140" fill="#0A0A0A" font-family="ui-monospace, monospace" font-size="20" letter-spacing="4">MAJLIS / ANNEX</text>
+</svg>

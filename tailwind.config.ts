@@ -9,35 +9,36 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Option A — Steel Graphite + Safety Amber (plan section 6.1)
-        primary: {
-          DEFAULT: "#1C2229", // graphite
-          muted: "#3A4552", // slate
-        },
+        ink: "#0A0A0A",
+        paper: "#FFFFFF",
+        muted: "#5C5C5C",
         accent: {
-          DEFAULT: "#F2A71B", // safety amber
-          dark: "#D68C0A", // hover/active (button backgrounds)
-          // Darker amber for text/icons on light backgrounds — #D68C0A only
-          // hits ~2.8:1 on white, which fails WCAG AA (4.5:1). This hits ~5.9:1.
-          contrast: "#8A5A0A",
+          DEFAULT: "#FF6A00",
+          dark: "#E55E00",
+        },
+        // Legacy aliases so any leftover classnames don't explode mid-migration
+        primary: {
+          DEFAULT: "#0A0A0A",
+          muted: "#5C5C5C",
         },
         background: "#FFFFFF",
-        surface: "#F5F6F7",
-        body: "#3F454B",
-        heading: "#1C2229",
+        surface: "#FFFFFF",
+        body: "#5C5C5C",
+        heading: "#0A0A0A",
+        rule: "#0A0A0A",
       },
       fontFamily: {
-        heading: ["var(--font-oswald)", "sans-serif"],
-        body: ["var(--font-inter)", "sans-serif"],
+        display: ["var(--font-display)", "sans-serif"],
+        body: ["var(--font-body)", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
+        heading: ["var(--font-display)", "sans-serif"],
       },
       maxWidth: {
-        "7xl": "1280px",
+        site: "1400px",
+        "7xl": "1400px",
       },
-      spacing: {
-        18: "4.5rem",
-      },
-      aspectRatio: {
-        "4/3": "4 / 3",
+      borderWidth: {
+        3: "3px",
       },
     },
   },

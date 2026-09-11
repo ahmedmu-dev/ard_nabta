@@ -1,52 +1,84 @@
 import Image from "next/image";
 import Button from "@/components/ui/Button";
-import StatsBar from "@/components/sections/StatsBar";
-import { SITE_NAME } from "@/lib/constants";
+import Reveal from "@/components/motion/Reveal";
+import MediaFrame from "@/components/motion/MediaFrame";
+import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 
-/**
- * Hero: eyebrow + H1 (the page's only h1) + copy + dual CTA over a full-width
- * background image, plus the optional stats strip below.
- */
 export default function Hero() {
   return (
-    <section id="home" aria-label="Introduction" className="relative">
-      <div className="relative flex min-h-[32rem] items-center overflow-hidden sm:min-h-[36rem] lg:min-h-[42rem]">
-        <Image
-          src="/images/hero/hero-villa-hatta.jpg"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-primary/70" aria-hidden="true" />
-        <div className="relative mx-auto w-full max-w-7xl px-6 py-24 md:px-8">
-          <div className="max-w-2xl">
-            <p className="mb-4 font-heading text-xs font-semibold uppercase tracking-[0.2em] text-accent sm:text-sm">
-              Villa Construction &amp; Building Contracting
-            </p>
-            <h1 className="text-3xl font-bold text-white sm:text-5xl lg:text-[3.25rem] lg:leading-tight">
-              From Foundation to Handover, Villas Built Right
-            </h1>
-            <p className="mt-6 text-base text-white/85 sm:text-lg">
-              {SITE_NAME} builds and hands over private villas, majlis
-              annexes, and building extensions across Dubai, licensed by
-              Dubai Municipality (Contractor License No. 1151140). Our team
-              manages every stage on site — from permitting through
-              structure, fit-out, and final handover.
-            </p>
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <Button href="#contact" variant="primary">
-                Get a Quote
-              </Button>
-              <Button href="#projects" variant="secondary-on-dark">
-                View Our Work
-              </Button>
-            </div>
+    <section
+      id="home"
+      aria-label="Introduction"
+      className="border-b-2 border-ink bg-ink text-paper"
+    >
+      <div className="site-pad grid min-h-[100dvh] grid-cols-1 items-end gap-8 pb-10 pt-14 lg:min-h-[calc(100dvh-4rem)] lg:grid-cols-[1.05fr_0.95fr] lg:items-stretch lg:gap-0 lg:pb-0 lg:pt-0">
+        <Reveal
+          from="left"
+          className="flex flex-col justify-end py-6 lg:border-r-2 lg:border-paper/20 lg:py-14 lg:pr-10"
+        >
+          <p className="meta text-accent">Hatta · Dubai · License 1151140</p>
+          <h1 className="display-xl mt-5 text-paper">
+            Build it
+            <br />
+            <span className="text-accent">right.</span>
+          </h1>
+          <p className="mt-6 max-w-[36rem] text-base leading-relaxed text-paper/80 md:text-lg">
+            Ard Nabta Building Contracting is a Dubai Municipality-licensed
+            contractor for private villas, majlis annexes, and extensions across
+            Hatta and Dubai. Permitting, structure, fit-out, and handover stay
+            with one site team from first brick to keys.
+          </p>
+          <Stagger
+            className="mt-6 grid max-w-[36rem] grid-cols-1 gap-2 border-t-2 border-paper/20 pt-6 text-sm text-paper/75 sm:grid-cols-2"
+            stagger={0.07}
+            delay={0.15}
+          >
+            {[
+              "DM Contractor License 1151140",
+              "Villa new-builds & extensions",
+              "Majlis / annex construction",
+              "Fit-out through completion cert",
+            ].map((item) => (
+              <StaggerItem key={item}>
+                <div className="flex gap-2">
+                  <span className="text-accent" aria-hidden="true">
+                    /
+                  </span>
+                  <span>{item}</span>
+                </div>
+              </StaggerItem>
+            ))}
+          </Stagger>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Button href="#contact" variant="accent">
+              Request a Quote
+            </Button>
+            <Button href="/projects" variant="ghost-on-ink">
+              See Built Work
+            </Button>
           </div>
-        </div>
+        </Reveal>
+
+        <Reveal
+          from="right"
+          delay={120}
+          className="relative min-h-[20rem] border-2 border-paper/20 lg:min-h-full lg:border-0"
+        >
+          <MediaFrame className="absolute inset-0 h-full w-full">
+            <Image
+              src="/images/hero/hero-villa-hatta.png"
+              alt="Completed villa exterior in a Hatta-style mountain setting"
+              fill
+              priority
+              className="object-cover"
+              sizes="(min-width: 1024px) 48vw, 100vw"
+            />
+          </MediaFrame>
+          <div className="absolute bottom-0 left-0 right-0 z-[1] border-t-2 border-paper/30 bg-ink/85 p-4 meta text-paper/85">
+            Private villa · Hatta corridor · Site photo
+          </div>
+        </Reveal>
       </div>
-      <StatsBar />
     </section>
   );
 }

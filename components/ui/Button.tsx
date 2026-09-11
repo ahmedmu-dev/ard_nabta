@@ -1,7 +1,10 @@
+"use client";
+
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 import Link from "next/link";
+import { motion, useReducedMotion } from "motion/react";
 
-type Variant = "primary" | "secondary" | "secondary-on-dark";
+type Variant = "accent" | "ink" | "ghost" | "ghost-on-ink";
 
 interface BaseProps {
   children: ReactNode;
@@ -10,67 +13,75 @@ interface BaseProps {
   onClick?: () => void;
 }
 
-interface LinkButtonProps extends BaseProps {
-  href: string;
-}
+/** React DOM drag/animation handlers collide with Motion’s pan handlers. */
+type NativeButtonProps = Omit<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  | "className"
+  | "children"
+  | "onClick"
+  | "onDrag"
+  | "onDragStart"
+  | "onDragEnd"
+  | "onAnimationStart"
+>;
 
-interface NativeButtonProps
-  extends BaseProps,
-    Omit<
-      ButtonHTMLAttributes<HTMLButtonElement>,
-      "className" | "children" | "onClick"
-    > {
-  href?: undefined;
-}
+type ButtonProps =
+  | (BaseProps & { href: string })
+  | (BaseProps & NativeButtonProps & { href?: undefined });
 
-type ButtonProps = LinkButtonProps | NativeButtonProps;
+const BASE =
+  "inline-flex items-center justify-center rounded-none px-6 py-3.5 font-body text-sm font-bold uppercase tracking-[0.14em] transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2";
 
-const BASE_CLASSES =
-  "inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 font-heading text-sm font-medium uppercase tracking-wide transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
-
-// Ring color intentionally varies by variant rather than living in
-// BASE_CLASSES: an amber ring on a white offset only hits ~2:1 contrast
-// (fails the 3:1 minimum for visible focus indicators), so light-background
-// variants use a dark ring instead, and the on-dark variant uses a white
-// ring against a dark offset.
-const VARIANT_CLASSES: Record<Variant, string> = {
-  primary:
-    "bg-accent text-primary hover:bg-accent-dark focus-visible:ring-primary focus-visible:ring-offset-white",
-  secondary:
-    "border-2 border-primary bg-transparent text-primary hover:bg-primary hover:text-white focus-visible:ring-primary focus-visible:ring-offset-white",
-  "secondary-on-dark":
-    "border-2 border-white bg-transparent text-white hover:bg-white hover:text-primary focus-visible:ring-white focus-visible:ring-offset-primary",
+const VARIANT: Record<Variant, string> = {
+  accent:
+    "bg-accent text-ink hover:bg-ink hover:text-paper focus-visible:ring-offset-paper",
+  ink: "bg-ink text-paper hover:bg-accent hover:text-ink focus-visible:ring-offset-paper",
+  ghost:
+    "border-2 border-ink bg-transparent text-ink hover:bg-ink hover:text-paper focus-visible:ring-offset-paper",
+  "ghost-on-ink":
+    "border-2 border-paper bg-transparent text-paper hover:bg-paper hover:text-ink focus-visible:ring-offset-ink",
 };
 
-/**
- * Shared primary/secondary button. Renders a Next.js Link when `href` is
- * provided (anchors in v1, real routes in v2), otherwise a native <button>.
- */
+const MotionLink = motion.create(Link);
+const MotionButton = motion.create("button");
+
 export default function Button({
   children,
-  variant = "primary",
+  variant = "accent",
   className = "",
   href,
   onClick,
   ...rest
 }: ButtonProps) {
-  const classes = `${BASE_CLASSES} ${VARIANT_CLASSES[variant]} ${className}`;
+  const reduce = useReducedMotion();
+  const classes = `${BASE} ${VARIANT[variant]} ${className}`;
+  const tap = reduce ? undefined : { scale: 0.98 };
+  const transition = { duration: 0.12, ease: "easeOut" as const };
 
   if (href) {
     return (
-      <Link href={href} className={classes} onClick={onClick}>
+      <MotionLink
+        href={href}
+        className={classes}
+        onClick={onClick}
+        whileTap={tap}
+        transition={transition}
+      >
         {children}
-      </Link>
+      </MotionLink>
     );
   }
 
   return (
-    <button
+    <MotionButton
+      type="button"
       className={classes}
       onClick={onClick}
-      {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}
+      whileTap={tap}
+      transition={transition}
+      {...rest}
     >
       {children}
-    </button>
+    </MotionButton>
   );
 }

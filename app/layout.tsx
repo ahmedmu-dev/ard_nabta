@@ -1,21 +1,29 @@
 import type { Metadata } from "next";
-import { Inter, Oswald } from "next/font/google";
-import TopBar from "@/components/layout/TopBar";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import { Archivo_Black, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import SiteHeader from "@/components/layout/SiteHeader";
+import SiteFooter from "@/components/layout/SiteFooter";
+import ScrollProgress from "@/components/motion/ScrollProgress";
 import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/constants";
 import "./globals.css";
 
-const oswald = Oswald({
+const display = Archivo_Black({
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-oswald",
+  weight: "400",
+  variable: "--font-display",
   display: "swap",
 });
 
-const inter = Inter({
+const body = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-body",
+  display: "swap",
+});
+
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -32,7 +40,6 @@ export const metadata: Metadata = {
     "building contractor Dubai",
     "villa extension Hatta",
     "Dubai Municipality licensed contractor",
-    "villa renovation Dubai",
   ],
   openGraph: {
     title: `${SITE_NAME} | ${SITE_TAGLINE}`,
@@ -43,24 +50,21 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: `${SITE_NAME} | ${SITE_TAGLINE}`,
-    description:
-      "Licensed villa construction, extensions, and building contracting across Dubai.",
-  },
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${oswald.variable} ${inter.variable}`}>
-      <body className="flex min-h-screen flex-col bg-background text-body">
-        <TopBar />
-        <Header />
+    <html
+      lang="en"
+      className={`${display.variable} ${body.variable} ${mono.variable}`}
+    >
+      <body className="flex min-h-screen flex-col bg-paper text-muted">
+        <ScrollProgress />
+        <SiteHeader />
         <main className="flex-1">{children}</main>
-        <Footer />
+        <SiteFooter />
       </body>
     </html>
   );

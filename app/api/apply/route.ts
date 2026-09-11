@@ -82,17 +82,24 @@ export async function POST(request: Request) {
     "CV filename": cv.name,
   };
 
-  const result = await sendToInfoInbox({
-    subject: `Job application: ${roleTitle} - ${name}`,
-    replyTo: email,
-    text: fieldsToText(fields),
-    attachment: {
-      filename: cv.name,
-      bytes,
-      mimeType,
+  const result = await sendToInfoInbox(
+    {
+      subject: `Job application: ${roleTitle} - ${name}`,
+      replyTo: email,
+      text: fieldsToText(fields),
+      attachment: {
+        filename: cv.name,
+        bytes,
+        mimeType,
+      },
     },
-  });
-
+    {
+      kind: "job",
+      to: email,
+      name,
+      roleTitle,
+    }
+  );
   if (!result.ok) {
     return NextResponse.json({ error: result.error }, { status: 502 });
   }

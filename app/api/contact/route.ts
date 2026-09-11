@@ -47,12 +47,18 @@ export async function POST(request: Request) {
     Message: message,
   };
 
-  const result = await sendToInfoInbox({
-    subject: `Quote request from ${name}`,
-    replyTo: email,
-    text: fieldsToText(fields),
-  });
-
+  const result = await sendToInfoInbox(
+    {
+      subject: `Quote request from ${name}`,
+      replyTo: email,
+      text: fieldsToText(fields),
+    },
+    {
+      kind: "quote",
+      to: email,
+      name,
+    }
+  );
   if (!result.ok) {
     return NextResponse.json({ error: result.error }, { status: 502 });
   }

@@ -12,8 +12,8 @@ export default function SiteFooter() {
             {SITE_NAME}
           </p>
           <p className="mt-4 max-w-[36ch] text-sm leading-relaxed text-muted">
-            Dubai Municipality License 1151140. Villas, annexes, and extensions
-            — one team from permit to keys.
+            Dubai Municipality registered contractor. Villas, annexes, and
+            extensions - one team from permit to keys.
           </p>
         </div>
         <div className="grid grid-cols-2 gap-8">
@@ -53,7 +53,7 @@ export default function SiteFooter() {
       <div className="border-t-2 border-ink">
         <div className="site-pad flex flex-col gap-2 py-4 meta text-muted sm:flex-row sm:justify-between">
           <span>© 2026 {SITE_NAME}</span>
-          <span>DM · 1151140</span>
+          <span>Dubai · UAE</span>
         </div>
       </div>
     </footer>

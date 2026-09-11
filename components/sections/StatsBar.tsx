@@ -2,7 +2,7 @@ const STATS = [
   { value: "03+", label: "Years Operating" },
   { value: "03+", label: "Villas Delivered" },
   { value: "HATTA", label: "Primary Site Area" },
-  { value: "1151140", label: "DM Contractor License" },
+  { value: "DM", label: "Registered Contractor" },
 ];
 
 /**

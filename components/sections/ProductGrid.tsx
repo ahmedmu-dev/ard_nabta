@@ -16,7 +16,8 @@ export default function ProductGrid() {
         </h2>
         <p className="mt-4 max-w-[54ch] text-base leading-relaxed text-muted">
           Four build packages covering new villas, annexes, finishing, and
-          external works, delivered under one Dubai Municipality license.
+          external works, delivered by one Dubai Municipality registered
+          contractor.
         </p>
       </Reveal>
 

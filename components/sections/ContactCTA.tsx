@@ -47,7 +47,7 @@ export default function ContactCTA() {
               <span>{CONTACT.address}</span>
             </li>
             <li className="meta pt-2 text-accent">
-              Dubai Municipality · License 1151140
+              Dubai Municipality registered contractor
             </li>
           </ul>
         </Reveal>

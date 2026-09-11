@@ -39,7 +39,7 @@ Scale: 13 / 16 / 20 / 28 / 44 / 72 / 108 / clamp to viewport. Headlines are stru
 ## Layout
 
 - Full-bleed sections; aggressive black ↔ white inversion
-- Asymmetric grids; oversized numerals as anchors (`01`, `1151140`)
+- Asymmetric grids; oversized numerals as anchors (`01`, `02`)
 - No three equal icon cards; no centered SaaS hero stack
 - Max width 1400px for text bands; media can bleed
 
@@ -58,7 +58,7 @@ Scale: 13 / 16 / 20 / 28 / 44 / 72 / 108 / clamp to viewport. Headlines are stru
 
 - Concrete verbs: Request a Quote · Call Site Office · See Built Work
 - No “Welcome”, “Elevate”, “seamless”, “Learn More”
-- License treated as graphic data, not a pill badge
+- DM registration stated in plain copy, not as a graphic number badge
 
 ## Reject
 

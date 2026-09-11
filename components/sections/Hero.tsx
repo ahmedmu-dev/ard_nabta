@@ -14,7 +14,7 @@ export default function Hero() {
           from="left"
           className="flex flex-col justify-end py-6 lg:border-r-2 lg:border-paper/20 lg:py-14 lg:pr-10"
         >
-          <p className="meta text-accent">Hatta · Dubai · License 1151140</p>
+          <p className="meta text-accent">Hatta · Dubai</p>
           <h1 className="display-xl mt-5 text-paper">
             Build it
             <br />
@@ -42,7 +42,7 @@ export default function Hero() {
           className="relative min-h-[20rem] border-2 border-paper/20 lg:min-h-full lg:border-0"
         >
           <SiteImage
-            src="/images/hero/hero-villa-hatta.png"
+            src="/images/hero/hero-villa-hatta.jpg"
             alt="Completed villa exterior in a Hatta-style mountain setting"
             fill
             priority

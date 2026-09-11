@@ -10,7 +10,7 @@ power stations) are all steel-fabrication content.
 
 The data you provided — 3 Dubai Municipality building-completion
 certificates and 11 site photos — shows ARD NABTA is a **general/residential
-building contractor** (DM contractor license **1151140**), doing new villa
+building contractor** (Dubai Municipality registered), doing new villa
 construction and villa extensions/modifications in Hatta, Dubai, including
 work for Mohammed Bin Rashid Housing Establishment beneficiaries (government
 housing). Photos confirm this: finished villa exteriors, stonework facades,
@@ -29,7 +29,7 @@ not just the brand name. The plan below reflects that.
 | Company name | ARD NABTA BUILDING CONTRACTING L.L.C. (Arabic: أرض نبتة لمقاولات البناء ش.ذ.م.م) | `SITE_NAME` |
 | Phone | 0525079810 | `CONTACT.phone` / `phoneHref` |
 | Email | ahmed.musa@ardnabta.com | `CONTACT.emailInfo` |
-| 3 PDFs | Dubai Municipality "Building Completion Certificates" (2 full completion, 1 modification/extension) for villas in Hatta — contractor license 1151140 | Proof-of-registration / credibility, **not** for direct publishing (see Missing & Important) |
+| 3 PDFs | Dubai Municipality "Building Completion Certificates" (2 full completion, 1 modification/extension) for villas in Hatta | Proof-of-registration / credibility, **not** for direct publishing (see Missing & Important) |
 | 11 photos + 1 video | Real villa construction: finished exteriors (2 distinct villa styles), stonework facade in-progress, boundary wall, interior ceiling/AC, finished bathroom, side alley/window detail | Hero image, project gallery, About section |
 
 ---
@@ -122,11 +122,11 @@ not just the brand name. The plan below reflects that.
   private individuals' full names, plot numbers, and personal building
   details (villa owners who are not ARD NABTA). Publishing these documents
   or the owner names publicly on a marketing site is a personal-data
-  exposure risk without their consent. Recommend: cite the **contractor
-  license number (1151140)** and "Dubai Municipality registered contractor"
-  as a trust signal, without showing the actual certificate images or owner
-  names — or get the property owners' explicit permission first if you want
-  to name/show specific projects.
+  exposure risk without their consent. Recommend: cite "Dubai Municipality
+  registered contractor" as a trust signal, without showing the actual
+  certificate images, owner names, or the contractor license number — or get
+  the property owners' explicit permission first if you want to name/show
+  specific projects.
 - **Real, publishable project names/locations.** Related to the above —
   need project labels you're allowed to use publicly (area/community name is
   usually fine; owner name usually isn't, without consent).

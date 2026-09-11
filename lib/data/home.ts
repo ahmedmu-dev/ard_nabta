@@ -33,7 +33,7 @@ export const SITE_PHOTOS = [
 export const SITE_COMMITMENTS = [
   {
     title: "One licensed contractor",
-    body: "Dubai Municipality license 1151140 covers the programme end to end. You deal with Ard Nabta, not a chain of informal trades.",
+    body: "One Dubai Municipality registered contractor covers the programme end to end. You deal with Ard Nabta, not a chain of informal trades.",
   },
   {
     title: "Drawings before ground breaks",

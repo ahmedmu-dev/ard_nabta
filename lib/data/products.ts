@@ -13,7 +13,7 @@ export const PRODUCTS: Product[] = [
       "Completion certificate support",
     ],
     image: {
-      src: "/images/products/new-villa-construction.png",
+      src: "/images/products/new-villa-construction.jpg",
       alt: "New villa under construction",
     },
   },
@@ -29,7 +29,7 @@ export const PRODUCTS: Product[] = [
       "External works as required",
     ],
     image: {
-      src: "/images/products/villa-extensions-annexes.png",
+      src: "/images/products/villa-extensions-annexes.jpg",
       alt: "Villa annex and extension exterior",
     },
   },
@@ -45,7 +45,7 @@ export const PRODUCTS: Product[] = [
       "Joinery coordination",
     ],
     image: {
-      src: "/images/products/interior-fit-out-finishing.png",
+      src: "/images/products/interior-fit-out-finishing.jpg",
       alt: "Finished villa bathroom interior",
     },
   },
@@ -61,7 +61,7 @@ export const PRODUCTS: Product[] = [
       "Site grading support",
     ],
     image: {
-      src: "/images/products/boundary-walls-external-works.png",
+      src: "/images/products/boundary-walls-external-works.jpg",
       alt: "Villa boundary wall and gate",
     },
   },

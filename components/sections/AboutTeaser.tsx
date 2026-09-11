@@ -6,8 +6,8 @@ import { SITE_NAME } from "@/lib/constants";
 
 const FACTS = [
   {
-    label: "License",
-    value: "1151140",
+    label: "Entity",
+    value: "L.L.C.",
     note: "Dubai Municipality contractor",
   },
   {
@@ -40,7 +40,7 @@ export default function AboutTeaser() {
           className="relative min-h-[22rem] border-b-2 border-ink lg:min-h-[34rem] lg:border-b-0 lg:border-r-2"
         >
           <SiteImage
-            src="/images/about/about-villa-hatta.png"
+            src="/images/about/about-villa-hatta.jpg"
             alt="Completed villa exterior with stone cladding"
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
@@ -55,9 +55,9 @@ export default function AboutTeaser() {
         >
           <p className="meta text-accent">04 - Contractor</p>
           <h2 id="about-heading" className="display-lg mt-3 text-ink">
-            One license.
+            One team.
             <br />
-            One site team.
+            One site.
           </h2>
           <p className="mt-5 max-w-[52ch] text-base leading-relaxed text-muted">
             {SITE_NAME} L.L.C. is a Dubai Municipality-licensed building

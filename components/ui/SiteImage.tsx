@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image, { type ImageProps } from "next/image";
 import { useReducedMotion } from "motion/react";
 
-type SiteImageProps = Omit<ImageProps, "onLoad" | "onLoadingComplete"> & {
+type SiteImageProps = Omit<ImageProps, "onLoad" | "onLoadingComplete" | "onError"> & {
   /** Extra classes for the outer frame (position/size live here for `fill`). */
   frameClassName?: string;
   /** Soft ink hatch while the photo loads. Default true. */
@@ -27,6 +27,10 @@ export default function SiteImage({
   const [loaded, setLoaded] = useState(false);
   const reduce = useReducedMotion();
 
+  function markLoaded() {
+    setLoaded(true);
+  }
+
   return (
     <div className={`media-frame ${frameClassName}`.trim()}>
       {skeleton && !loaded ? (
@@ -37,7 +41,9 @@ export default function SiteImage({
         priority={priority}
         quality={quality}
         loading={priority ? undefined : "lazy"}
-        onLoad={() => setLoaded(true)}
+        onLoad={markLoaded}
+        onLoadingComplete={markLoaded}
+        onError={markLoaded}
         className={`media-photo ${loaded ? "is-loaded" : ""} ${
           reduce ? "media-photo-instant" : ""
         } ${className}`.trim()}

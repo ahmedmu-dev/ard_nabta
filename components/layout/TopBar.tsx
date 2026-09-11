@@ -6,7 +6,7 @@ const DARK_FOCUS_RING =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary";
 
 /**
- * Thin trust strip: phone / email + license meta.
+ * Thin trust strip: phone / email + location meta.
  */
 export default function TopBar() {
   return (
@@ -29,7 +29,7 @@ export default function TopBar() {
           </a>
         </div>
         <p className="hidden font-mono text-[0.65rem] uppercase tracking-[0.16em] text-white/45 md:block">
-          DM License 1151140
+          Hatta · Dubai
         </p>
       </Container>
     </div>

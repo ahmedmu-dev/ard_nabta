@@ -50,8 +50,8 @@ export default function WorkWithUsPage() {
                 <span>Hatta / Dubai</span>
               </li>
               <li className="flex justify-between gap-4 border-b border-paper/15 pb-3">
-                <span>License</span>
-                <span>DM 1151140</span>
+                <span>Entity</span>
+                <span>L.L.C.</span>
               </li>
               <li className="flex justify-between gap-4">
                 <span>Apply</span>

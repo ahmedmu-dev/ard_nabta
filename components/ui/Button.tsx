@@ -1,7 +1,8 @@
 "use client";
 
-import type { ButtonHTMLAttributes, ReactNode } from "react";
+import type { ButtonHTMLAttributes, MouseEvent, ReactNode } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, useReducedMotion } from "motion/react";
 
 type Variant = "accent" | "ink" | "ghost" | "ghost-on-ink";
@@ -45,6 +46,21 @@ const VARIANT: Record<Variant, string> = {
 const MotionLink = motion.create(Link);
 const MotionButton = motion.create("button");
 
+function samePageHashTarget(
+  href: string,
+  pathname: string
+): string | null {
+  const hashIndex = href.indexOf("#");
+  if (hashIndex === -1) return null;
+  const hash = href.slice(hashIndex + 1);
+  if (!hash) return null;
+  const path = href.slice(0, hashIndex);
+  if (path === "" || path === "/" || path === pathname) {
+    return hash;
+  }
+  return null;
+}
+
 export default function Button({
   children,
   variant = "accent",
@@ -53,17 +69,30 @@ export default function Button({
   onClick,
   ...rest
 }: ButtonProps) {
+  const pathname = usePathname();
   const reduce = useReducedMotion();
   const classes = `${BASE} ${VARIANT[variant]} ${className}`;
   const tap = reduce ? undefined : { scale: 0.98 };
   const transition = { duration: 0.12, ease: "easeOut" as const };
 
   if (href) {
+    const hashId = samePageHashTarget(href, pathname);
+
+    function handleClick(event: MouseEvent<HTMLAnchorElement>) {
+      onClick?.();
+      if (!hashId) return;
+      const el = document.getElementById(hashId);
+      if (!el) return;
+      event.preventDefault();
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.history.pushState(null, "", `#${hashId}`);
+    }
+
     return (
       <MotionLink
         href={href}
         className={classes}
-        onClick={onClick}
+        onClick={handleClick}
         whileTap={tap}
         transition={transition}
       >

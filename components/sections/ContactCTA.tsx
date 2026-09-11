@@ -7,7 +7,7 @@ export default function ContactCTA() {
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="bg-ink text-paper"
+      className="scroll-mt-16 bg-ink text-paper"
     >
       <div className="site-pad grid grid-cols-1 lg:grid-cols-2">
         <Reveal

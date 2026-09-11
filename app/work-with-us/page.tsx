@@ -49,10 +49,6 @@ export default function WorkWithUsPage() {
                 <span>Primary sites</span>
                 <span>Hatta / Dubai</span>
               </li>
-              <li className="flex justify-between gap-4 border-b border-paper/15 pb-3">
-                <span>Entity</span>
-                <span>L.L.C.</span>
-              </li>
               <li className="flex justify-between gap-4">
                 <span>Apply</span>
                 <Link href="#apply" className="text-accent hover:text-paper">

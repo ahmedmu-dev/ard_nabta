@@ -6,11 +6,6 @@ import { SITE_NAME } from "@/lib/constants";
 
 const FACTS = [
   {
-    label: "Entity",
-    value: "L.L.C.",
-    note: "Dubai Municipality contractor",
-  },
-  {
     label: "Focus",
     value: "Villas",
     note: "New builds, annexes, extensions",
@@ -24,6 +19,11 @@ const FACTS = [
     label: "Model",
     value: "One team",
     note: "Permit → structure → keys",
+  },
+  {
+    label: "Base",
+    value: "Dubai",
+    note: "Municipality registered contractor",
   },
 ];
 
@@ -60,7 +60,7 @@ export default function AboutTeaser() {
             One site.
           </h2>
           <p className="mt-5 max-w-[52ch] text-base leading-relaxed text-muted">
-            {SITE_NAME} L.L.C. is a Dubai Municipality-licensed building
+            {SITE_NAME} is a Dubai Municipality-licensed building
             contractor. We deliver private villas, majlis annexes, and
             extensions with a single accountable team on site: drawings and
             permits, structure, fit-out, external works, completion

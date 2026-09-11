@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# raw client-supplied source material (contains private third-party info —
+# Dubai Municipality certificates name property owners; see
+# CONTENT_PERSONALIZATION_PLAN.md). Never commit/push this folder.
+/ard_nabta_content/

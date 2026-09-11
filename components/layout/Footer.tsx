@@ -1,23 +1,10 @@
 import Link from "next/link";
 import { Mail, Phone } from "lucide-react";
 import Container from "@/components/ui/Container";
-import {
-  FacebookIcon,
-  InstagramIcon,
-  LinkedinIcon,
-  YoutubeIcon,
-} from "@/components/ui/SocialIcons";
 import { PRODUCTS } from "@/lib/data/products";
 import { SERVICES } from "@/lib/data/services";
 import { PROJECTS } from "@/lib/data/projects";
-import { CONTACT, SITE_NAME, SOCIAL_LINKS } from "@/lib/constants";
-
-const SOCIALS = [
-  { label: "LinkedIn", href: SOCIAL_LINKS.linkedin, Icon: LinkedinIcon },
-  { label: "Instagram", href: SOCIAL_LINKS.instagram, Icon: InstagramIcon },
-  { label: "Facebook", href: SOCIAL_LINKS.facebook, Icon: FacebookIcon },
-  { label: "YouTube", href: SOCIAL_LINKS.youtube, Icon: YoutubeIcon },
-];
+import { CONTACT, SITE_NAME } from "@/lib/constants";
 
 // Footer sits on a dark background — override the page's default dark focus
 // ring with a white ring on a dark offset so it stays visible.
@@ -125,21 +112,6 @@ export default function Footer() {
             <Link href="/sitemap.xml" className={FOOTER_LINK}>
               Sitemap
             </Link>
-            <ul className="flex items-center gap-3">
-              {SOCIALS.map(({ label, href, Icon }) => (
-                <li key={label}>
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={label}
-                    className={`flex items-center ${FOOTER_LINK}`}
-                  >
-                    <Icon size={14} aria-hidden="true" />
-                  </a>
-                </li>
-              ))}
-            </ul>
           </div>
         </Container>
       </div>

@@ -1,48 +1,51 @@
 import type { Project } from "@/lib/types";
 
 /**
- * Fictional placeholder projects (plan.md Section 4.5). Replace with real,
- * permissioned case studies (names, clients, locations, photos) before launch.
+ * Real projects, drawn from the site photos and the 3 Dubai Municipality
+ * completion certificates supplied. Certificates name the private property
+ * owners — that personal data is intentionally left out (see
+ * CONTENT_PERSONALIZATION_PLAN.md); projects are labelled generically by
+ * area instead. Replace with owner-approved project names if/when available.
  */
 export const PROJECTS: Project[] = [
   {
-    slug: "meridian-metro-rail-extension",
-    name: "Meridian Metro Rail Extension",
-    sector: "Transit",
-    oneLiner: "Structural steel package for 4 elevated station platforms.",
+    slug: "private-villa-hatta",
+    name: "Private Villa — Hatta",
+    sector: "New Villa Construction",
+    oneLiner: "Ground, first floor, and roof villa build under a Dubai Municipality building permit.",
     image: {
-      src: "/images/projects/meridian-metro-rail-extension.svg",
-      alt: "Meridian Metro Rail Extension, Transit",
+      src: "/images/projects/private-villa-hatta.jpg",
+      alt: "Private villa under construction in Hatta, Dubai",
     },
   },
   {
-    slug: "falcon-bay-airport-terminal-3",
-    name: "Falcon Bay International Airport — Terminal 3",
-    sector: "Aviation",
-    oneLiner: "Roof steel and cladding for a 45,000 m² terminal expansion.",
+    slug: "family-majlis-annex-hatta",
+    name: "Family Majlis & Annex — Hatta",
+    sector: "New Construction",
+    oneLiner: "Ground-floor family majlis with annex and external works, completed 2024.",
     image: {
-      src: "/images/projects/falcon-bay-airport-terminal-3.svg",
-      alt: "Falcon Bay International Airport Terminal 3, Aviation",
+      src: "/images/projects/family-majlis-annex-hatta.jpg",
+      alt: "Completed family majlis and annex in Hatta, Dubai",
     },
   },
   {
-    slug: "horizon-logistics-hub",
-    name: "Horizon Logistics Hub",
-    sector: "Warehousing",
-    oneLiner: "Pre-engineered building package across 6 warehouse units.",
+    slug: "villa-extension-boundary-wall-hatta",
+    name: "Villa Extension & Boundary Wall — Hatta",
+    sector: "Extension & Modification",
+    oneLiner: "Villa expansion with a new boundary wall and annex, completed under a building modification permit.",
     image: {
-      src: "/images/projects/horizon-logistics-hub.svg",
-      alt: "Horizon Logistics Hub, Warehousing",
+      src: "/images/projects/villa-extension-boundary-wall-hatta.jpg",
+      alt: "Villa boundary wall extension in Hatta, Dubai",
     },
   },
   {
-    slug: "crescent-power-station-upgrade",
-    name: "Crescent Power Station Upgrade",
-    sector: "Energy",
-    oneLiner: "Structural steel support for turbine hall retrofit.",
+    slug: "villa-interior-fit-out-hatta",
+    name: "Villa Interior Fit-Out — Hatta",
+    sector: "Interior Finishing",
+    oneLiner: "Ceiling, AC, and interior finishing carried through to move-in condition.",
     image: {
-      src: "/images/projects/crescent-power-station-upgrade.svg",
-      alt: "Crescent Power Station Upgrade, Energy",
+      src: "/images/projects/villa-interior-fit-out-hatta.jpg",
+      alt: "Finished villa interior ceiling and fit-out in Hatta, Dubai",
     },
   },
 ];

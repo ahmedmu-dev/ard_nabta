@@ -15,7 +15,7 @@ export default function ServicesSection() {
           eyebrow="What We Do"
           heading="Our Services"
           align="center"
-          subtext="Three service pillars covering a project from first sketch to final steel."
+          subtext="Three service pillars covering a project from first sketch to final handover."
         />
         <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3 lg:gap-8">
           {SERVICES.map((service) => (

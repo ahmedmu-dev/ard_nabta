@@ -1,31 +1,31 @@
 import type { NewsItem } from "@/lib/types";
 
 /**
- * Fictional placeholder news items (plan.md Section 4.9). Replace with real
- * milestones, certifications, and press before launch.
+ * Milestones drawn directly from the 3 Dubai Municipality completion
+ * certificates supplied (dates and work descriptions are real; no
+ * certificate images or owner names are published — see
+ * CONTENT_PERSONALIZATION_PLAN.md).
  */
 export const NEWS_ITEMS: NewsItem[] = [
   {
-    slug: "horizon-logistics-hub-structural-steel-complete",
-    date: "March 2026",
-    headline:
-      "Ferrum Steel Completes Structural Steel Package for Horizon Logistics Hub",
+    slug: "villa-extension-boundary-wall-completed",
+    date: "July 2026",
+    headline: "Villa Extension & Boundary Wall Completed in Hatta",
     summary:
-      "The 6-unit warehouse package was delivered on schedule, from structural design through final erection.",
+      "Completed a villa and boundary wall extension under a Dubai Municipality building modification permit.",
   },
   {
-    slug: "iso-3834-welding-certification",
-    date: "February 2026",
-    headline: "Ferrum Steel Achieves ISO 3834 Welding Certification",
+    slug: "new-villa-handed-over",
+    date: "June 2026",
+    headline: "New Villa Handed Over in Hatta",
     summary:
-      "The certification confirms our fabrication facilities meet international quality standards for fusion welding.",
+      "Delivered a ground, first floor, and roof villa build under a full Dubai Municipality completion certificate.",
   },
   {
-    slug: "middle-east-steel-construction-expo-2026",
-    date: "January 2026",
-    headline:
-      "Ferrum Steel to Exhibit at Middle East Steel & Construction Expo 2026",
+    slug: "family-majlis-annex-completed",
+    date: "June 2024",
+    headline: "Family Majlis & Annex Completed in Hatta",
     summary:
-      "Our team will showcase recent projects and product lines at this year's regional industry expo.",
+      "Completed a family majlis with annex and external works for a private client in Hatta.",
   },
 ];

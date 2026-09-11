@@ -1,13 +1,15 @@
 const STATS = [
-  { value: "[XX]+", label: "Years in Operation" },
-  { value: "[XXX]+", label: "Projects Delivered" },
-  { value: "[X]", label: "Countries Served" },
-  { value: "ISO [XXXX]", label: "Certified" },
+  { value: "3+", label: "Years in Operation" },
+  { value: "3+", label: "Villas Delivered" },
+  { value: "Hatta", label: "Dubai" },
+  { value: "1151140", label: "DM Contractor License" },
 ];
 
 /**
- * Optional stat strip beneath the hero. Values are placeholders per
- * plan.md Section 4.3 — swap for real, verifiable figures before launch.
+ * Optional stat strip beneath the hero. Figures are rough, derived from the
+ * 3 Dubai Municipality completion certificates supplied (earliest permit:
+ * 2023) — not precise, replace with real figures once the company confirms
+ * them. See CONTENT_PERSONALIZATION_PLAN.md.
  */
 export default function StatsBar() {
   return (

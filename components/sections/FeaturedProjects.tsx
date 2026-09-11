@@ -19,7 +19,7 @@ export default function FeaturedProjects() {
           id="projects-heading"
           eyebrow="Proof of Work"
           heading="Featured Projects"
-          subtext="A sample of the infrastructure, industrial, and commercial work our teams have delivered."
+          subtext="A sample of the villa construction and building work our team has delivered in Dubai."
         />
         <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
           {PROJECTS.map((project) => (

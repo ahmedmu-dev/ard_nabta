@@ -16,7 +16,7 @@ export default function AboutTeaser() {
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="relative order-2 aspect-[4/3] w-full overflow-hidden rounded-lg lg:order-1">
             <Image
-              src="/images/about/about-teaser.svg"
+              src="/images/about/about-villa-hatta.jpg"
               alt=""
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
@@ -30,12 +30,12 @@ export default function AboutTeaser() {
               heading={`Who ${SITE_NAME} Is`}
             />
             <p className="mt-6 text-base text-body">
-              Founded on a commitment to precision engineering, {SITE_NAME}{" "}
-              has grown into a full-service structural steel manufacturer —
-              combining in-house design, fabrication, and erection under one
-              roof. We hold ourselves to international HSE and quality
-              standards on every project, from single-story warehouses to
-              multi-terminal airports.
+              {SITE_NAME} is a Dubai Municipality-licensed building contractor
+              (License No. 1151140) delivering private villas, majlis
+              annexes, and building extensions across Dubai. We manage every
+              stage on site — from permitting through structure, fit-out, and
+              final handover — so clients deal with one team from first
+              brick to keys in hand.
             </p>
             <div className="mt-8">
               <Button href="#contact" variant="secondary">

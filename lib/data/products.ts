@@ -1,64 +1,50 @@
 import type { Product } from "@/lib/types";
 
+/**
+ * Ard Nabta's building scope, based on the 3 Dubai Municipality completion
+ * certificates supplied (villa new-builds, a majlis/annex, and a villa +
+ * boundary wall extension). Confirm the full service list with the company
+ * before treating this as exhaustive — see CONTENT_PERSONALIZATION_PLAN.md.
+ */
 export const PRODUCTS: Product[] = [
   {
-    slug: "structural-steel",
-    name: "Structural Steel",
+    slug: "new-villa-construction",
+    name: "New Villa Construction",
     description:
-      "Custom-engineered steel frameworks fabricated to project-specific load and design requirements.",
+      "Full turnkey villa builds from foundation to handover, managed under Dubai Municipality-licensed permits.",
     image: {
-      src: "/images/products/structural-steel.svg",
-      alt: "Structural Steel fabricated by Ferrum Steel",
+      src: "/images/products/new-villa-construction.jpg",
+      alt: "New villa under construction, built by Ard Nabta Building Contracting",
     },
   },
   {
-    slug: "pre-engineered-buildings",
-    name: "Pre-Engineered Buildings",
+    slug: "villa-extensions-annexes",
+    name: "Villa Extensions & Annexes",
     description:
-      "Fast-track, factory-fabricated steel buildings optimized for cost and speed of erection.",
+      "Majlis additions, family annexes, and approved structural modifications to existing villas.",
     image: {
-      src: "/images/products/pre-engineered-buildings.svg",
-      alt: "Pre-Engineered Buildings fabricated by Ferrum Steel",
+      src: "/images/products/villa-extensions-annexes.jpg",
+      alt: "Completed villa annex built by Ard Nabta Building Contracting",
     },
   },
   {
-    slug: "building-subsystems",
-    name: "Building Subsystems",
+    slug: "interior-fit-out-finishing",
+    name: "Interior Fit-Out & Finishing",
     description:
-      "Mezzanines, crane systems, and secondary structures integrated into your primary steel frame.",
+      "Flooring, ceilings, bathrooms, and kitchens finished to move-in standard as part of the build.",
     image: {
-      src: "/images/products/building-subsystems.svg",
-      alt: "Building Subsystems fabricated by Ferrum Steel",
+      src: "/images/products/interior-fit-out-finishing.jpg",
+      alt: "Finished villa bathroom fit-out by Ard Nabta Building Contracting",
     },
   },
   {
-    slug: "sheeting-systems",
-    name: "Sheeting Systems",
+    slug: "boundary-walls-external-works",
+    name: "Boundary Walls & External Works",
     description:
-      "Roof and wall cladding systems engineered for weather performance and thermal efficiency.",
+      "Perimeter walls, gates, and external works coordinated alongside the main villa build.",
     image: {
-      src: "/images/products/sheeting-systems.svg",
-      alt: "Sheeting Systems fabricated by Ferrum Steel",
-    },
-  },
-  {
-    slug: "steel-decking",
-    name: "Steel Decking",
-    description:
-      "Composite and non-composite decking solutions for floor and roof slab construction.",
-    image: {
-      src: "/images/products/steel-decking.svg",
-      alt: "Steel Decking fabricated by Ferrum Steel",
-    },
-  },
-  {
-    slug: "crane-bridge-girders",
-    name: "Crane Bridge Girders",
-    description:
-      "Heavy-duty girders engineered for industrial crane systems and material-handling loads.",
-    image: {
-      src: "/images/products/crane-bridge-girders.svg",
-      alt: "Crane Bridge Girders fabricated by Ferrum Steel",
+      src: "/images/products/boundary-walls-external-works.jpg",
+      alt: "Villa boundary wall built by Ard Nabta Building Contracting",
     },
   },
 ];

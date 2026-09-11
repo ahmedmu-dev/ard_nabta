@@ -1,26 +1,26 @@
-import { Compass, Factory, HardHat } from "lucide-react";
+import { Compass, HardHat, KeyRound } from "lucide-react";
 import type { Service } from "@/lib/types";
 
 export const SERVICES: Service[] = [
   {
-    slug: "structural-design",
-    name: "Structural Design",
+    slug: "design-permitting",
+    name: "Design & Permitting",
     description:
-      "In-house engineering team delivers structural analysis and design optimized for cost, speed, and code compliance.",
+      "We work with licensed consultants to prepare drawings and secure Dubai Municipality approvals before breaking ground.",
     icon: Compass,
   },
   {
-    slug: "fabrication",
-    name: "Fabrication",
+    slug: "construction",
+    name: "Construction",
     description:
-      "State-of-the-art fabrication facilities producing precision steel components at scale.",
-    icon: Factory,
+      "Our on-site teams manage the full build — structure, fit-out, and external works — under one licensed contractor.",
+    icon: HardHat,
   },
   {
-    slug: "erection",
-    name: "Erection",
+    slug: "handover",
+    name: "Handover",
     description:
-      "Experienced field crews handle safe, on-schedule erection from foundation to final steel.",
-    icon: HardHat,
+      "Final inspection and Dubai Municipality completion certification, then keys handed over to the client.",
+    icon: KeyRound,
   },
 ];

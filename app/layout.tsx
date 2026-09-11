@@ -26,18 +26,18 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Ferrum Steel designs, fabricates, and erects structural steel and pre-engineered buildings for infrastructure, industrial, and commercial projects across the Middle East and Africa.",
+    "Ard Nabta Building Contracting L.L.C. delivers licensed villa construction, extensions, and building contracting across Dubai.",
   keywords: [
-    "structural steel",
-    "pre-engineered buildings",
-    "steel fabrication",
-    "steel erection",
-    "PEB manufacturer",
+    "villa construction Dubai",
+    "building contractor Dubai",
+    "villa extension Hatta",
+    "Dubai Municipality licensed contractor",
+    "villa renovation Dubai",
   ],
   openGraph: {
     title: `${SITE_NAME} | ${SITE_TAGLINE}`,
     description:
-      "Structural steel and pre-engineered buildings for the region's most demanding infrastructure, industrial, and commercial projects.",
+      "Licensed villa construction, extensions, and building contracting across Dubai.",
     url: SITE_URL,
     siteName: SITE_NAME,
     locale: "en_US",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${SITE_NAME} | ${SITE_TAGLINE}`,
     description:
-      "Structural steel and pre-engineered buildings for the region's most demanding infrastructure, industrial, and commercial projects.",
+      "Licensed villa construction, extensions, and building contracting across Dubai.",
   },
 };
 

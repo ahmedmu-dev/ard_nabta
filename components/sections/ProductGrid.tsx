@@ -14,8 +14,8 @@ export default function ProductGrid() {
         <SectionHeading
           id="products-heading"
           eyebrow="What We Build"
-          heading="Product Lines"
-          subtext="Six core product lines covering the full structural steel scope, from primary frame to secondary systems."
+          heading="Building Types"
+          subtext="From new villas to extensions and finishing work, delivered under one licensed contractor."
         />
         <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
           {PRODUCTS.map((product) => (

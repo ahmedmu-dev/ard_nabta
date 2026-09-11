@@ -40,9 +40,19 @@ function smtpIdentity() {
   const host =
     process.env.SMTP_HOST?.trim() || "wednesday.mxrouting.net";
   const port = Number(process.env.SMTP_PORT || "587");
-  const user = process.env.SMTP_USER?.trim() || CONTACT.emailInfo;
+  // Prefer a mailbox that is NOT the destination inbox.
+  // MXroute often skips Inbox when SMTP auth user == recipient (mail may
+  // only appear under Sent).
+  const user =
+    process.env.SMTP_USER?.trim() ||
+    process.env.SMTP_FROM?.trim() ||
+    "admin@ardnabta.com";
   const pass = requireEnv("SMTP_PASS");
   return { host, port, user, pass };
+}
+
+function mailToAddress(): string {
+  return process.env.MAIL_TO?.trim() || CONTACT.emailInfo;
 }
 
 function createTransport() {
@@ -52,15 +62,16 @@ function createTransport() {
     port,
     secure: port === 465,
     auth: { user, pass },
+    // MXroute / shared hosts: avoid hanging serverless invocations.
+    connectionTimeout: 15_000,
+    greetingTimeout: 15_000,
+    socketTimeout: 20_000,
   });
 }
 
 /** From header that shows as NO REPLY in the recipient's mail client. */
-function noReplyFrom(): string {
-  const address =
-    process.env.SMTP_NOREPLY?.trim() ||
-    process.env.SMTP_USER?.trim() ||
-    CONTACT.emailInfo;
+function noReplyFrom(smtpUser: string): string {
+  const address = process.env.SMTP_NOREPLY?.trim() || smtpUser;
   return `"NO REPLY" <${address}>`;
 }
 
@@ -83,7 +94,6 @@ function buildAutoReply(auto: AutoReply): { subject: string; text: string } {
         "If you need to reach us, use the contact form on ardnabta.com or call 052 507 9810.",
         "",
         SITE_NAME,
-        "Dubai Municipality License 1151140",
       ].join("\n"),
     };
   }
@@ -102,7 +112,6 @@ function buildAutoReply(auto: AutoReply): { subject: string; text: string } {
       "If your matter is urgent, call 052 507 9810.",
       "",
       SITE_NAME,
-      "Dubai Municipality License 1151140",
     ].join("\n"),
   };
 }
@@ -110,22 +119,38 @@ function buildAutoReply(auto: AutoReply): { subject: string; text: string } {
 /**
  * Deliver form mail to info@ via MXroute SMTP, then send a NO REPLY
  * auto-reply to the submitter (quote and job copy differ).
+ *
+ * Important: authenticate as a different mailbox than MAIL_TO (e.g.
+ * admin@ardnabta.com -> info@ardnabta.com). Same-account SMTP sends often
+ * never appear in the Inbox on MXroute.
  */
 export async function sendToInfoInbox(
   mail: OutboundMail,
   autoReply?: AutoReply
 ): Promise<{ ok: true } | { ok: false; error: string }> {
   try {
+    const { user: smtpUser } = smtpIdentity();
     const transporter = createTransport();
-    const fromUser = process.env.SMTP_USER?.trim() || CONTACT.emailInfo;
+    const to = mailToAddress();
 
-    await transporter.sendMail({
-      from: `"Ard Nabta Website" <${fromUser}>`,
-      to: CONTACT.emailInfo,
+    if (smtpUser.toLowerCase() === to.toLowerCase()) {
+      console.warn(
+        "[email] SMTP_USER and MAIL_TO are the same address. MXroute may not put this mail in Inbox. Use admin@ (or another mailbox) as SMTP_USER."
+      );
+    }
+
+    const info = await transporter.sendMail({
+      from: `"Ard Nabta Website" <${smtpUser}>`,
+      to,
       replyTo: mail.replyTo,
       subject: mail.subject,
       text: mail.text,
       html: mail.html,
+      // Force envelope recipient so the message is delivered as inbound mail.
+      envelope: {
+        from: smtpUser,
+        to,
+      },
       attachments: mail.attachment
         ? [
             {
@@ -137,18 +162,31 @@ export async function sendToInfoInbox(
         : undefined,
     });
 
+    console.info("[email] notify accepted", {
+      messageId: info.messageId,
+      to,
+      from: smtpUser,
+      response: info.response,
+    });
+
     if (autoReply) {
       const reply = buildAutoReply(autoReply);
       try {
-        await transporter.sendMail({
-          from: noReplyFrom(),
+        const autoInfo = await transporter.sendMail({
+          from: noReplyFrom(smtpUser),
           to: autoReply.to,
-          // Intentionally no replyTo - discourage replies to this auto message.
           subject: reply.subject,
           text: reply.text,
+          envelope: {
+            from: smtpUser,
+            to: autoReply.to,
+          },
+        });
+        console.info("[email] auto-reply accepted", {
+          messageId: autoInfo.messageId,
+          to: autoReply.to,
         });
       } catch (autoErr) {
-        // Notify mail already landed in info@; do not fail the form on auto-reply issues.
         console.error(
           "[email] auto-reply failed:",
           autoErr instanceof Error ? autoErr.message : autoErr

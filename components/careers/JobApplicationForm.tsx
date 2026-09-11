@@ -4,7 +4,6 @@ import { useEffect, useState, type FormEvent } from "react";
 import Button from "@/components/ui/Button";
 import { CONTACT } from "@/lib/constants";
 import { JOBS } from "@/lib/data/jobs";
-import { openInfoMail } from "@/lib/mailto";
 
 const FIELD =
   "mt-2 w-full rounded-none border-2 border-ink bg-paper px-4 py-3 text-sm text-ink placeholder:text-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2";
@@ -24,9 +23,13 @@ export default function JobApplicationForm({
     address: "",
     experience: "",
     message: "",
+    company: "",
   });
   const [cvFile, setCvFile] = useState<File | null>(null);
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle"
+  );
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (initialJobSlug) {
@@ -48,51 +51,69 @@ export default function JobApplicationForm({
     setCvFile(file);
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const roleTitle =
-      JOBS.find((job) => job.slug === values.role)?.title ?? values.role;
-    const lines = [
-      "New job application",
-      "",
-      `Role: ${roleTitle}`,
-      `Name: ${values.name}`,
-      `Email: ${values.email}`,
-      `Phone: ${values.phone}`,
-      `Experience: ${values.experience}`,
-      "",
-      "Address:",
-      values.address,
-      "",
-      "Why this role:",
-      values.message,
-      "",
-      cvFile
-        ? `CV file selected: ${cvFile.name} (please attach this file before sending)`
-        : "CV: not attached",
-    ];
-    openInfoMail(
-      `Job application: ${roleTitle} - ${values.name}`,
-      lines.join("\n")
-    );
-    setSubmitted(true);
+    if (!cvFile) {
+      setStatus("error");
+      setError("Please attach a CV.");
+      return;
+    }
+
+    setStatus("sending");
+    setError("");
+
+    const body = new FormData();
+    body.append("role", values.role);
+    body.append("name", values.name);
+    body.append("email", values.email);
+    body.append("phone", values.phone);
+    body.append("address", values.address);
+    body.append("experience", values.experience);
+    body.append("message", values.message);
+    body.append("company", values.company);
+    body.append("cv", cvFile);
+
+    try {
+      const response = await fetch("/api/apply", {
+        method: "POST",
+        body,
+      });
+      const data = (await response.json().catch(() => null)) as {
+        error?: string;
+      } | null;
+
+      if (!response.ok) {
+        throw new Error(data?.error || "Send failed.");
+      }
+
+      setStatus("sent");
+    } catch (err) {
+      setStatus("error");
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Could not send. Email info@ardnabta.com directly."
+      );
+    }
   }
 
-  if (submitted) {
+  if (status === "sent") {
     const roleTitle =
       JOBS.find((job) => job.slug === values.role)?.title ?? "the role";
     return (
       <div role="status" className="border-2 border-ink bg-paper p-8">
         <h3 className="font-display text-xl uppercase tracking-tight text-ink">
-          Opening your email
+          Application sent
         </h3>
         <p className="mt-3 text-sm leading-relaxed text-muted">
-          Your application for {roleTitle} is addressed to {CONTACT.emailInfo}.
-          Attach your CV in the mail app, then send to complete the application.
+          Your application for {roleTitle} was delivered to {CONTACT.emailInfo},
+          including your CV. Our team will follow up if there is a match.
         </p>
       </div>
     );
   }
+
+  const busy = status === "sending";
 
   return (
     <form
@@ -100,6 +121,17 @@ export default function JobApplicationForm({
       onSubmit={handleSubmit}
       className="space-y-5 border-2 border-ink bg-paper p-6 md:p-8"
     >
+      <input
+        type="text"
+        name="company"
+        value={values.company}
+        onChange={handleChange}
+        tabIndex={-1}
+        autoComplete="off"
+        className="absolute -left-[9999px] h-0 w-0 opacity-0"
+        aria-hidden="true"
+      />
+
       <div>
         <label htmlFor="role" className="meta text-ink">
           Role
@@ -111,6 +143,7 @@ export default function JobApplicationForm({
           value={values.role}
           onChange={handleChange}
           className={FIELD}
+          disabled={busy}
         >
           <option value="" disabled>
             Select a role
@@ -143,6 +176,7 @@ export default function JobApplicationForm({
             value={values[id]}
             onChange={handleChange}
             className={FIELD}
+            disabled={busy}
           />
         </div>
       ))}
@@ -160,6 +194,7 @@ export default function JobApplicationForm({
           onChange={handleChange}
           placeholder="Street, area, city, emirate…"
           className={`${FIELD} resize-none`}
+          disabled={busy}
         />
       </div>
 
@@ -175,11 +210,12 @@ export default function JobApplicationForm({
           accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
           onChange={handleCvChange}
           className={`${FIELD} file:mr-4 file:border-0 file:bg-ink file:px-3 file:py-1.5 file:font-mono file:text-xs file:uppercase file:tracking-wider file:text-paper`}
+          disabled={busy}
         />
         <p className="mt-2 font-mono text-[11px] uppercase tracking-wider text-muted">
           {cvFile
             ? `Selected: ${cvFile.name}`
-            : "PDF or Word · max recommended 5 MB"}
+            : "PDF or Word · max 5 MB"}
         </p>
       </div>
 
@@ -196,15 +232,21 @@ export default function JobApplicationForm({
           onChange={handleChange}
           placeholder="Brief note on relevant villa / site experience…"
           className={`${FIELD} resize-none`}
+          disabled={busy}
         />
       </div>
 
-      <Button type="submit" variant="accent" className="w-full">
-        Submit Application
+      {status === "error" ? (
+        <p role="alert" className="text-sm text-red-700">
+          {error}
+        </p>
+      ) : null}
+
+      <Button type="submit" variant="accent" className="w-full" disabled={busy}>
+        {busy ? "Sending…" : "Submit Application"}
       </Button>
       <p className="font-mono text-[11px] uppercase tracking-wider text-muted">
-        Sends to {CONTACT.emailInfo}. Attach your CV in the mail app before
-        sending.
+        Delivered to {CONTACT.emailInfo} with CV attached
       </p>
     </form>
   );

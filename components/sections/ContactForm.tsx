@@ -3,7 +3,6 @@
 import { useState, type FormEvent } from "react";
 import Button from "@/components/ui/Button";
 import { CONTACT } from "@/lib/constants";
-import { openInfoMail } from "@/lib/mailto";
 
 const FIELD =
   "mt-2 w-full rounded-none border-2 border-ink bg-paper px-4 py-3 text-sm text-ink placeholder:text-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2";
@@ -14,8 +13,12 @@ export default function ContactForm() {
     email: "",
     phone: "",
     message: "",
+    company: "",
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle"
+  );
+  const [error, setError] = useState("");
 
   function handleChange(
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -24,41 +27,74 @@ export default function ContactForm() {
     setValues((prev) => ({ ...prev, [name]: value }));
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const lines = [
-      "New project quote request",
-      "",
-      `Name: ${values.name}`,
-      `Email: ${values.email}`,
-      `Phone: ${values.phone || "Not provided"}`,
-      "",
-      "Project notes:",
-      values.message,
-    ];
-    openInfoMail(
-      `Quote request from ${values.name}`,
-      lines.join("\n")
-    );
-    setSubmitted(true);
+    setStatus("sending");
+    setError("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: values.name,
+          email: values.email,
+          phone: values.phone,
+          message: values.message,
+          company: values.company,
+        }),
+      });
+      const data = (await response.json().catch(() => null)) as {
+        error?: string;
+      } | null;
+
+      if (!response.ok) {
+        throw new Error(data?.error || "Send failed.");
+      }
+
+      setStatus("sent");
+    } catch (err) {
+      setStatus("error");
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Could not send. Email info@ardnabta.com directly."
+      );
+    }
   }
 
-  if (submitted) {
+  if (status === "sent") {
     return (
       <div role="status" className="border-2 border-ink bg-paper p-8">
         <h3 className="font-display text-xl uppercase tracking-tight text-ink">
-          Opening your email
+          Message sent
         </h3>
         <p className="mt-3 text-sm leading-relaxed text-muted">
-          Your project brief is addressed to {CONTACT.emailInfo}. Send the
-          message from your mail app to complete the request.
+          Your project brief was delivered to {CONTACT.emailInfo}. We will
+          follow up on next steps.
         </p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5 border-2 border-ink bg-paper p-6 md:p-8">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-5 border-2 border-ink bg-paper p-6 md:p-8"
+      noValidate={false}
+    >
+      {/* Honeypot - leave empty */}
+      <input
+        type="text"
+        name="company"
+        value={values.company}
+        onChange={handleChange}
+        tabIndex={-1}
+        autoComplete="off"
+        className="absolute -left-[9999px] h-0 w-0 opacity-0"
+        aria-hidden="true"
+      />
+
       {(
         [
           ["name", "Name", "text", true],
@@ -79,6 +115,7 @@ export default function ContactForm() {
             value={values[id]}
             onChange={handleChange}
             className={FIELD}
+            disabled={status === "sending"}
           />
         </div>
       ))}
@@ -94,13 +131,26 @@ export default function ContactForm() {
           value={values.message}
           onChange={handleChange}
           className={`${FIELD} resize-none`}
+          disabled={status === "sending"}
         />
       </div>
-      <Button type="submit" variant="accent" className="w-full">
-        Send Project Brief
+
+      {status === "error" ? (
+        <p role="alert" className="text-sm text-red-700">
+          {error}
+        </p>
+      ) : null}
+
+      <Button
+        type="submit"
+        variant="accent"
+        className="w-full"
+        disabled={status === "sending"}
+      >
+        {status === "sending" ? "Sending…" : "Send Project Brief"}
       </Button>
       <p className="font-mono text-[11px] uppercase tracking-wider text-muted">
-        Sends to {CONTACT.emailInfo}
+        Delivered to {CONTACT.emailInfo}
       </p>
     </form>
   );

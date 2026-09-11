@@ -11,7 +11,7 @@ export const SITE_URL = "https://ardnabta.com";
 export const CONTACT = {
   phone: "052 507 9810",
   phoneHref: "tel:+971525079810",
-  emailInfo: "contact@ardnabta.com",
-  emailSales: "contact@ardnabta.com",
+  emailInfo: "info@ardnabta.com",
+  emailSales: "info@ardnabta.com",
   address: "Dubai, United Arab Emirates",
 } as const;

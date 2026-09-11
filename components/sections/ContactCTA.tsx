@@ -36,10 +36,10 @@ export default function ContactCTA() {
             <li className="flex flex-col gap-1">
               <span className="meta text-paper/45">Email</span>
               <a
-                href={`mailto:${CONTACT.emailSales}`}
+                href={`mailto:${CONTACT.emailInfo}`}
                 className="text-paper hover:text-accent"
               >
-                {CONTACT.emailSales}
+                {CONTACT.emailInfo}
               </a>
             </li>
             <li className="flex flex-col gap-1">

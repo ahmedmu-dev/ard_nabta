@@ -2,7 +2,9 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import Button from "@/components/ui/Button";
+import { CONTACT } from "@/lib/constants";
 import { JOBS } from "@/lib/data/jobs";
+import { openInfoMail } from "@/lib/mailto";
 
 const FIELD =
   "mt-2 w-full rounded-none border-2 border-ink bg-paper px-4 py-3 text-sm text-ink placeholder:text-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2";
@@ -48,6 +50,31 @@ export default function JobApplicationForm({
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const roleTitle =
+      JOBS.find((job) => job.slug === values.role)?.title ?? values.role;
+    const lines = [
+      "New job application",
+      "",
+      `Role: ${roleTitle}`,
+      `Name: ${values.name}`,
+      `Email: ${values.email}`,
+      `Phone: ${values.phone}`,
+      `Experience: ${values.experience}`,
+      "",
+      "Address:",
+      values.address,
+      "",
+      "Why this role:",
+      values.message,
+      "",
+      cvFile
+        ? `CV file selected: ${cvFile.name} (please attach this file before sending)`
+        : "CV: not attached",
+    ];
+    openInfoMail(
+      `Job application: ${roleTitle} - ${values.name}`,
+      lines.join("\n")
+    );
     setSubmitted(true);
   }
 
@@ -57,11 +84,11 @@ export default function JobApplicationForm({
     return (
       <div role="status" className="border-2 border-ink bg-paper p-8">
         <h3 className="font-display text-xl uppercase tracking-tight text-ink">
-          Application received
+          Opening your email
         </h3>
         <p className="mt-3 text-sm leading-relaxed text-muted">
-          Thanks — we have your details for {roleTitle}. Our team will follow
-          up if there is a match.
+          Your application for {roleTitle} is addressed to {CONTACT.emailInfo}.
+          Attach your CV in the mail app, then send to complete the application.
         </p>
       </div>
     );
@@ -175,6 +202,10 @@ export default function JobApplicationForm({
       <Button type="submit" variant="accent" className="w-full">
         Submit Application
       </Button>
+      <p className="font-mono text-[11px] uppercase tracking-wider text-muted">
+        Sends to {CONTACT.emailInfo}. Attach your CV in the mail app before
+        sending.
+      </p>
     </form>
   );
 }

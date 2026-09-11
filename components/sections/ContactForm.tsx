@@ -2,6 +2,8 @@
 
 import { useState, type FormEvent } from "react";
 import Button from "@/components/ui/Button";
+import { CONTACT } from "@/lib/constants";
+import { openInfoMail } from "@/lib/mailto";
 
 const FIELD =
   "mt-2 w-full rounded-none border-2 border-ink bg-paper px-4 py-3 text-sm text-ink placeholder:text-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2";
@@ -24,6 +26,20 @@ export default function ContactForm() {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const lines = [
+      "New project quote request",
+      "",
+      `Name: ${values.name}`,
+      `Email: ${values.email}`,
+      `Phone: ${values.phone || "Not provided"}`,
+      "",
+      "Project notes:",
+      values.message,
+    ];
+    openInfoMail(
+      `Quote request from ${values.name}`,
+      lines.join("\n")
+    );
     setSubmitted(true);
   }
 
@@ -31,10 +47,11 @@ export default function ContactForm() {
     return (
       <div role="status" className="border-2 border-ink bg-paper p-8">
         <h3 className="font-display text-xl uppercase tracking-tight text-ink">
-          Message received
+          Opening your email
         </h3>
         <p className="mt-3 text-sm leading-relaxed text-muted">
-          We will follow up on your project details.
+          Your project brief is addressed to {CONTACT.emailInfo}. Send the
+          message from your mail app to complete the request.
         </p>
       </div>
     );
@@ -82,6 +99,9 @@ export default function ContactForm() {
       <Button type="submit" variant="accent" className="w-full">
         Send Project Brief
       </Button>
+      <p className="font-mono text-[11px] uppercase tracking-wider text-muted">
+        Sends to {CONTACT.emailInfo}
+      </p>
     </form>
   );
 }

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { JOBS } from "@/lib/data/jobs";
-import { isHoneypotFilled, sendToInfoInbox } from "@/lib/email";
+import { fieldsToText, isHoneypotFilled, sendToInfoInbox } from "@/lib/email";
 
 export const runtime = "nodejs";
 
@@ -70,20 +70,22 @@ export async function POST(request: Request) {
 
   const bytes = new Uint8Array(await cv.arrayBuffer());
 
+  const fields = {
+    Form: "Job application",
+    Role: roleTitle,
+    Name: name,
+    Email: email,
+    Phone: phone,
+    Experience: experience,
+    Address: address,
+    Message: message,
+    "CV filename": cv.name,
+  };
+
   const result = await sendToInfoInbox({
     subject: `Job application: ${roleTitle} - ${name}`,
     replyTo: email,
-    fields: {
-      form: "Job application",
-      role: roleTitle,
-      name,
-      email,
-      phone,
-      experience,
-      address,
-      message,
-      cv_filename: cv.name,
-    },
+    text: fieldsToText(fields),
     attachment: {
       filename: cv.name,
       bytes,

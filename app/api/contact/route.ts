@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { isHoneypotFilled, sendToInfoInbox } from "@/lib/email";
+import { fieldsToText, isHoneypotFilled, sendToInfoInbox } from "@/lib/email";
 
 export const runtime = "nodejs";
 
@@ -39,16 +39,18 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Enter a valid email." }, { status: 400 });
   }
 
+  const fields = {
+    Form: "Request a quote",
+    Name: name,
+    Email: email,
+    Phone: phone || "Not provided",
+    Message: message,
+  };
+
   const result = await sendToInfoInbox({
     subject: `Quote request from ${name}`,
     replyTo: email,
-    fields: {
-      form: "Request a quote",
-      name,
-      email,
-      phone: phone || "Not provided",
-      message,
-    },
+    text: fieldsToText(fields),
   });
 
   if (!result.ok) {

@@ -7,7 +7,7 @@ import { JOBS } from "@/lib/data/jobs";
 
 export const metadata: Metadata = {
   title: "Work With Us",
-  description: `Open roles at ${SITE_NAME} — site engineers, supervisors, finishing, QS, and project coordination across Hatta and Dubai.`,
+  description: `Open roles at ${SITE_NAME}: site engineers, supervisors, finishing, QS, project coordination, and digital roles across Hatta and Dubai.`,
 };
 
 export default function WorkWithUsPage() {

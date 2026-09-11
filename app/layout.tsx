@@ -3,6 +3,7 @@ import { Archivo_Black, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import ScrollProgress from "@/components/motion/ScrollProgress";
+import ScrollToTop from "@/components/motion/ScrollToTop";
 import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/constants";
 import "./globals.css";
 
@@ -76,6 +77,7 @@ export default function RootLayout({
       className={`${display.variable} ${body.variable} ${mono.variable}`}
     >
       <body className="flex min-h-screen flex-col bg-paper text-muted">
+        <ScrollToTop />
         <ScrollProgress />
         <SiteHeader />
         <main className="flex-1">{children}</main>

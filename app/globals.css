@@ -171,5 +171,23 @@
       transform: none;
       opacity: 1;
     }
+
+    .ard-tech-pulse {
+      animation: none;
+    }
+  }
+
+  .ard-tech-pulse {
+    animation: ard-tech-pulse 1.6s ease-in-out infinite;
+  }
+
+  @keyframes ard-tech-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.25;
+    }
   }
 }

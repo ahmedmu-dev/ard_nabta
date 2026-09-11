@@ -1,7 +1,6 @@
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/motion/Reveal";
 import SiteImage from "@/components/ui/SiteImage";
-import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 
 export default function Hero() {
   return (
@@ -27,27 +26,6 @@ export default function Hero() {
             Hatta and Dubai. Permitting, structure, fit-out, and handover stay
             with one site team from first brick to keys.
           </p>
-          <Stagger
-            className="mt-6 grid max-w-[36rem] grid-cols-1 gap-2 border-t-2 border-paper/20 pt-6 text-sm text-paper/75 sm:grid-cols-2"
-            stagger={0.07}
-            delay={0.15}
-          >
-            {[
-              "DM Contractor License 1151140",
-              "Villa new-builds & extensions",
-              "Majlis / annex construction",
-              "Fit-out through completion cert",
-            ].map((item) => (
-              <StaggerItem key={item}>
-                <div className="flex gap-2">
-                  <span className="text-accent" aria-hidden="true">
-                    /
-                  </span>
-                  <span>{item}</span>
-                </div>
-              </StaggerItem>
-            ))}
-          </Stagger>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button href="#contact" variant="accent">
               Request a Quote

@@ -106,4 +106,67 @@ export const JOBS: Job[] = [
       "Arabic language skills are an advantage",
     ],
   },
+  {
+    slug: "software-engineer",
+    title: "Software Engineer",
+    department: "Digital",
+    location: "Dubai (hybrid)",
+    type: "Full-time",
+    summary:
+      "Build and maintain the web tools that support Ard Nabta operations: public site, careers intake, and internal project workflows.",
+    responsibilities: [
+      "Ship and maintain Next.js features for the public website and careers flows",
+      "Integrate forms, APIs, and simple back-office tooling for site teams",
+      "Improve performance, accessibility, and deployment reliability",
+      "Work with design and operations to turn site needs into working software",
+    ],
+    requirements: [
+      "Strong TypeScript / React / Next.js experience",
+      "Comfortable with Git, APIs, and production web deployments",
+      "Clear written English for specs and handoff notes",
+      "Interest in construction or operations tooling is an advantage",
+    ],
+  },
+  {
+    slug: "ui-ux-designer",
+    title: "UI/UX Designer",
+    department: "Digital",
+    location: "Dubai (hybrid)",
+    type: "Full-time",
+    summary:
+      "Own the digital experience for Ard Nabta: site structure, careers flows, and clear interfaces for clients and site teams.",
+    responsibilities: [
+      "Design page layouts, component states, and application forms end to end",
+      "Map client and applicant journeys into simple, high-contrast UI",
+      "Produce handoff-ready specs that match the existing brutalist system",
+      "Test mobile and desktop flows and refine based on real use",
+    ],
+    requirements: [
+      "Portfolio showing web or product UI with strong visual hierarchy",
+      "Fluent in Figma (or equivalent) and design systems",
+      "Comfortable writing concise UX copy for forms and CTAs",
+      "Experience with marketing sites or B2B services is preferred",
+    ],
+  },
+  {
+    slug: "ai-engineer",
+    title: "AI Engineer",
+    department: "Digital",
+    location: "Dubai (hybrid)",
+    type: "Full-time",
+    summary:
+      "Apply practical AI to contracting workflows: document assist, site photo organisation, and internal knowledge tools that save site-office time.",
+    responsibilities: [
+      "Prototype and ship AI features for document search, summarisation, and intake triage",
+      "Build reliable pipelines for site photos, permits, and project notes",
+      "Evaluate models and vendors for accuracy, cost, and UAE data handling",
+      "Partner with software and operations to put AI into real daily use",
+    ],
+    requirements: [
+      "Hands-on experience with LLMs, embeddings, or applied ML in products",
+      "Strong Python and/or TypeScript for tooling and APIs",
+      "Ability to ship small, measurable pilots (not research-only work)",
+      "Familiarity with document or media workflows is an advantage",
+    ],
+  },
 ];

@@ -1,8 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/motion/Reveal";
-import MediaFrame from "@/components/motion/MediaFrame";
+import SiteImage from "@/components/ui/SiteImage";
 import { SITE_PHOTOS } from "@/lib/data/home";
 
 export default function SitePhotoStrip() {
@@ -29,15 +28,14 @@ export default function SitePhotoStrip() {
             delay={Math.min(index * 40, 160)}
             className={`relative min-h-[14rem] border-b-2 border-ink sm:border-r-2 ${photo.className}`}
           >
-            <MediaFrame className="absolute inset-0 h-full w-full">
-              <Image
-                src={photo.src}
-                alt={photo.alt}
-                fill
-                className="object-cover"
-                sizes="(min-width: 768px) 50vw, 100vw"
-              />
-            </MediaFrame>
+            <SiteImage
+              src={photo.src}
+              alt={photo.alt}
+              fill
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="object-cover"
+              frameClassName="absolute inset-0 h-full w-full"
+            />
             <p className="absolute bottom-0 left-0 z-[1] border-t-2 border-paper/20 bg-ink/80 px-3 py-2 meta text-paper/80">
               {photo.caption}
             </p>
@@ -47,7 +45,8 @@ export default function SitePhotoStrip() {
 
       <Reveal className="site-pad flex flex-col gap-4 py-10 sm:flex-row sm:items-center sm:justify-between">
         <p className="max-w-[40ch] text-sm leading-relaxed text-paper/70">
-          Twenty site photos across four sample sets on the projects page.
+          Full galleries stay on the projects page so the home screen stays
+          light.
         </p>
         <Button href="/projects" variant="accent" className="w-fit">
           Open project samples

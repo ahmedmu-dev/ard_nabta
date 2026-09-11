@@ -1,7 +1,6 @@
-import Image from "next/image";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/motion/Reveal";
-import MediaFrame from "@/components/motion/MediaFrame";
+import SiteImage from "@/components/ui/SiteImage";
 import { PROJECTS } from "@/lib/data/projects";
 
 export default function FeaturedProjects() {
@@ -39,19 +38,16 @@ export default function FeaturedProjects() {
             >
               <Reveal delay={index * 40}>
                 <div className="grid grid-cols-1 lg:grid-cols-2">
-                  <MediaFrame
-                    className={`relative min-h-[18rem] md:min-h-[24rem] ${
+                  <SiteImage
+                    src={project.image.src}
+                    alt={project.image.alt}
+                    fill
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="object-cover"
+                    frameClassName={`relative min-h-[18rem] md:min-h-[24rem] ${
                       invert ? "lg:order-2" : ""
                     }`}
-                  >
-                    <Image
-                      src={project.image.src}
-                      alt={project.image.alt}
-                      fill
-                      className="object-cover"
-                      sizes="(min-width: 1024px) 50vw, 100vw"
-                    />
-                  </MediaFrame>
+                  />
                   <div
                     className={`site-pad flex flex-col justify-center py-10 md:py-12 lg:px-12 ${
                       invert

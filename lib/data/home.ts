@@ -23,22 +23,10 @@ export const SITE_PHOTOS = [
     className: "",
   },
   {
-    src: "/images/samples/project-03/06-photo-2026-09-10-14-17-52-7.jpg",
-    alt: "Hatta extension site works",
-    caption: "Active plot",
-    className: "md:col-span-2",
-  },
-  {
-    src: "/images/samples/project-02/05-photo-2026-09-10-15-41-39.jpg",
-    alt: "Villa finishing works on site",
-    caption: "Finishing stage",
-    className: "",
-  },
-  {
     src: "/images/samples/project-03/03-photo-2026-09-10-14-17-52-4.jpg",
     alt: "Ard Nabta contractor site board in Hatta",
     caption: "Licensed on site",
-    className: "",
+    className: "md:col-span-2",
   },
 ] as const;
 

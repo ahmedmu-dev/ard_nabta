@@ -1,7 +1,6 @@
-import Image from "next/image";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/motion/Reveal";
-import MediaFrame from "@/components/motion/MediaFrame";
+import SiteImage from "@/components/ui/SiteImage";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { SITE_NAME } from "@/lib/constants";
 
@@ -40,15 +39,14 @@ export default function AboutTeaser() {
           from="left"
           className="relative min-h-[22rem] border-b-2 border-ink lg:min-h-[34rem] lg:border-b-0 lg:border-r-2"
         >
-          <MediaFrame className="absolute inset-0 h-full w-full">
-            <Image
-              src="/images/about/about-villa-hatta.png"
-              alt="Completed villa exterior with stone cladding"
-              fill
-              className="object-cover"
-              sizes="(min-width: 1024px) 50vw, 100vw"
-            />
-          </MediaFrame>
+          <SiteImage
+            src="/images/about/about-villa-hatta.png"
+            alt="Completed villa exterior with stone cladding"
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover"
+            frameClassName="absolute inset-0 h-full w-full"
+          />
         </Reveal>
         <Reveal
           from="right"

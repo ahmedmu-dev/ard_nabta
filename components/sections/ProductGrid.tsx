@@ -1,6 +1,5 @@
-import Image from "next/image";
 import Reveal from "@/components/motion/Reveal";
-import MediaFrame from "@/components/motion/MediaFrame";
+import SiteImage from "@/components/ui/SiteImage";
 import { PRODUCTS } from "@/lib/data/products";
 
 export default function ProductGrid() {
@@ -51,15 +50,14 @@ export default function ProductGrid() {
                   ))}
                 </ul>
               </div>
-              <MediaFrame className="relative min-h-[14rem] border-t-2 border-ink md:border-l-2 md:border-t-0">
-                <Image
-                  src={product.image.src}
-                  alt={product.image.alt}
-                  fill
-                  className="object-cover"
-                  sizes="(min-width: 768px) 24rem, 100vw"
-                />
-              </MediaFrame>
+              <SiteImage
+                src={product.image.src}
+                alt={product.image.alt}
+                fill
+                sizes="(min-width: 768px) 24rem, 100vw"
+                className="object-cover"
+                frameClassName="relative min-h-[14rem] border-t-2 border-ink md:border-l-2 md:border-t-0"
+              />
             </article>
           </Reveal>
         ))}

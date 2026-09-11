@@ -1,7 +1,6 @@
-import Image from "next/image";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/motion/Reveal";
-import MediaFrame from "@/components/motion/MediaFrame";
+import SiteImage from "@/components/ui/SiteImage";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 
 export default function Hero() {
@@ -64,16 +63,16 @@ export default function Hero() {
           delay={120}
           className="relative min-h-[20rem] border-2 border-paper/20 lg:min-h-full lg:border-0"
         >
-          <MediaFrame className="absolute inset-0 h-full w-full">
-            <Image
-              src="/images/hero/hero-villa-hatta.png"
-              alt="Completed villa exterior in a Hatta-style mountain setting"
-              fill
-              priority
-              className="object-cover"
-              sizes="(min-width: 1024px) 48vw, 100vw"
-            />
-          </MediaFrame>
+          <SiteImage
+            src="/images/hero/hero-villa-hatta.png"
+            alt="Completed villa exterior in a Hatta-style mountain setting"
+            fill
+            priority
+            quality={82}
+            sizes="(min-width: 1024px) 48vw, 100vw"
+            className="object-cover"
+            frameClassName="absolute inset-0 h-full w-full"
+          />
           <div className="absolute bottom-0 left-0 right-0 z-[1] border-t-2 border-paper/30 bg-ink/85 p-4 meta text-paper/85">
             Private villa · Hatta corridor · Site photo
           </div>

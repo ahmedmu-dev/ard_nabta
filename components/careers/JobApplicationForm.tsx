@@ -107,7 +107,8 @@ export default function JobApplicationForm({
         </h3>
         <p className="mt-3 text-sm leading-relaxed text-muted">
           Your application for {roleTitle} was delivered to {CONTACT.emailInfo},
-          including your CV. Our team will follow up if there is a match.
+          including your CV. A NO REPLY confirmation was also sent to{" "}
+          {values.email}.
         </p>
       </div>
     );

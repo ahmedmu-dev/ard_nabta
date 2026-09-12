@@ -13,7 +13,7 @@ export default function ContactForm() {
     email: "",
     phone: "",
     message: "",
-    company: "",
+    hp_field: "",
   });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle"
@@ -41,7 +41,7 @@ export default function ContactForm() {
           email: values.email,
           phone: values.phone,
           message: values.message,
-          company: values.company,
+          hp_field: values.hp_field,
         }),
       });
       const data = (await response.json().catch(() => null)) as {
@@ -86,13 +86,13 @@ export default function ContactForm() {
       {/* Honeypot - leave empty */}
       <input
         type="text"
-        name="company"
-        value={values.company}
+        name="hp_field"
+        value={values.hp_field}
         onChange={handleChange}
         tabIndex={-1}
         autoComplete="off"
-        className="absolute -left-[9999px] h-0 w-0 opacity-0"
         aria-hidden="true"
+        className="pointer-events-none absolute h-0 w-0 overflow-hidden opacity-0"
       />
 
       {(

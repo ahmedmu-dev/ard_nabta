@@ -23,7 +23,7 @@ export default function JobApplicationForm({
     address: "",
     experience: "",
     message: "",
-    company: "",
+    hp_field: "",
   });
   const [cvFile, setCvFile] = useState<File | null>(null);
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
@@ -70,7 +70,7 @@ export default function JobApplicationForm({
     body.append("address", values.address);
     body.append("experience", values.experience);
     body.append("message", values.message);
-    body.append("company", values.company);
+    body.append("hp_field", values.hp_field);
     body.append("cv", cvFile);
 
     try {
@@ -123,12 +123,12 @@ export default function JobApplicationForm({
     >
       <input
         type="text"
-        name="company"
-        value={values.company}
+        name="hp_field"
+        value={values.hp_field}
         onChange={handleChange}
         tabIndex={-1}
         autoComplete="off"
-        className="absolute -left-[9999px] h-0 w-0 opacity-0"
+        className="pointer-events-none absolute h-0 w-0 overflow-hidden opacity-0"
         aria-hidden="true"
       />
 

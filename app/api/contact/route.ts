@@ -8,7 +8,7 @@ type ContactBody = {
   email?: string;
   phone?: string;
   message?: string;
-  company?: string; // honeypot
+  hp_field?: string; // honeypot
 };
 
 export async function POST(request: Request) {
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid request." }, { status: 400 });
   }
 
-  if (isHoneypotFilled(body.company)) {
+  if (isHoneypotFilled(body.hp_field)) {
     return NextResponse.json({ ok: true });
   }
 

@@ -19,7 +19,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid request." }, { status: 400 });
   }
 
-  if (isHoneypotFilled(form.get("company"))) {
+  if (isHoneypotFilled(form.get("hp_field"))) {
     return NextResponse.json({ ok: true });
   }
 

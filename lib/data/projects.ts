@@ -2,6 +2,25 @@ import type { Project } from "@/lib/types";
 
 export const PROJECTS: Project[] = [
   {
+    slug: "foundation-works-al-barsha-south",
+    name: "Foundation Works - Al Barsha South",
+    sector: "New Build",
+    location: "Al Barsha South, Dubai",
+    year: "2026",
+    oneLiner:
+      "Foundation package for an additional residential unit: formwork, reinforcement, waterproofed stub columns, and site testing.",
+    details: [
+      "Foundation formwork and reinforcement",
+      "Waterproofed stub columns and starter bars",
+      "Blockwork to the foundation line",
+      "Concrete test cubes on site",
+    ],
+    image: {
+      src: "/images/samples/project-06/01-foundation.jpg",
+      alt: "Foundation with waterproofed stub columns and starter bars in Al Barsha South",
+    },
+  },
+  {
     slug: "new-villa-structure-hatta",
     name: "New Villa Structure - Hatta",
     sector: "New Build",

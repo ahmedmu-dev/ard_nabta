@@ -6,6 +6,45 @@ import type { SampleProject } from "@/lib/types";
  */
 export const SAMPLE_PROJECTS: SampleProject[] = [
   {
+    slug: "foundation-works-al-barsha-south",
+    name: "Foundation Works - Al Barsha South",
+    sector: "New Build",
+    location: "Al Barsha South, Dubai",
+    year: "2026",
+    oneLiner:
+      "Foundation package for an additional residential unit: formwork, reinforcement, waterproofed stub columns, and site testing.",
+    images: [
+      {
+        src: "/images/samples/project-06/01-foundation.jpg",
+        alt: "Foundation with waterproofed stub columns and starter bars in Al Barsha South",
+      },
+      {
+        src: "/images/samples/project-06/02-stub-columns.jpg",
+        alt: "Stub columns and blockwork foundation on a Dubai residential plot",
+      },
+      {
+        src: "/images/samples/project-06/03-foundation-line.jpg",
+        alt: "Foundation line with reinforcement and waterproofing",
+      },
+      {
+        src: "/images/samples/project-06/04-formwork.jpg",
+        alt: "Timber formwork and reinforcement for foundation beams",
+      },
+      {
+        src: "/images/samples/project-06/05-beam-formwork.jpg",
+        alt: "Beam formwork prepared beside an existing structure",
+      },
+      {
+        src: "/images/samples/project-06/06-site-board.jpg",
+        alt: "Ard Nabta site board for foundation works in Al Barsha South",
+      },
+      {
+        src: "/images/samples/project-06/07-cubes.jpg",
+        alt: "Concrete test cubes on the Al Barsha South site",
+      },
+    ],
+  },
+  {
     slug: "new-villa-structure-hatta",
     name: "New Villa Structure - Hatta",
     sector: "New Build",

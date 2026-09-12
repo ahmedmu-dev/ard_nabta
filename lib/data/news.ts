@@ -2,6 +2,13 @@ import type { NewsItem } from "@/lib/types";
 
 export const NEWS_ITEMS: NewsItem[] = [
   {
+    slug: "foundation-works-al-barsha-south",
+    date: "September 2026",
+    headline: "Foundation Works Underway in Al Barsha South",
+    summary:
+      "Foundation works are in progress for an additional residential unit in Al Barsha South, including reinforcement, waterproofed stub columns, and concrete testing on site.",
+  },
+  {
     slug: "new-villa-structure-underway-hatta",
     date: "September 2026",
     headline: "New Villa Structure Underway in Hatta",

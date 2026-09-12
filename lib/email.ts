@@ -95,7 +95,9 @@ function buildAutoReply(auto: AutoReply): { subject: string; text: string } {
         "",
         "Yours faithfully,",
         SITE_NAME,
-        "Dubai, United Arab Emirates",
+        CONTACT.building,
+        CONTACT.plot,
+        CONTACT.city,
       ].join("\n"),
     };
   }
@@ -115,7 +117,9 @@ function buildAutoReply(auto: AutoReply): { subject: string; text: string } {
       "",
       "Yours faithfully,",
       SITE_NAME,
-      "Dubai, United Arab Emirates",
+      CONTACT.building,
+      CONTACT.plot,
+      CONTACT.city,
     ].join("\n"),
   };
 }

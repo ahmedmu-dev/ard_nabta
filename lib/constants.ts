@@ -1,7 +1,6 @@
 /**
  * Site-wide constants — brand name and contact details for Ard Nabta
- * Building Contracting L.L.C. Address and social links are not yet
- * confirmed (see CONTENT_PERSONALIZATION_PLAN.md) — update when supplied.
+ * Building Contracting L.L.C.
  */
 
 export const SITE_NAME = "Ard Nabta Building Contracting";
@@ -13,5 +12,9 @@ export const CONTACT = {
   phoneHref: "tel:+971525079810",
   emailInfo: "info@ardnabta.com",
   emailSales: "info@ardnabta.com",
-  address: "Dubai, United Arab Emirates",
+  building: "DUBAI MUNICIPALITY-MOHD ABDULLA AL BEDWAWI",
+  plot: "Plot Number 804-0",
+  city: "Dubai, United Arab Emirates",
+  address:
+    "DUBAI MUNICIPALITY-MOHD ABDULLA AL BEDWAWI, Plot Number 804-0, Dubai, United Arab Emirates",
 } as const;

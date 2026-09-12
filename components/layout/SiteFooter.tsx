@@ -45,7 +45,13 @@ export default function SiteFooter() {
                   {CONTACT.emailInfo}
                 </a>
               </li>
-              <li>{CONTACT.address}</li>
+              <li>
+                {CONTACT.building}
+                <br />
+                {CONTACT.plot}
+                <br />
+                {CONTACT.city}
+              </li>
             </ul>
           </div>
         </div>

@@ -43,8 +43,14 @@ export default function ContactCTA() {
               </a>
             </li>
             <li className="flex flex-col gap-1">
-              <span className="meta text-paper/45">Base</span>
-              <span>{CONTACT.address}</span>
+              <span className="meta text-paper/45">Address</span>
+              <span>
+                {CONTACT.building}
+                <br />
+                {CONTACT.plot}
+                <br />
+                {CONTACT.city}
+              </span>
             </li>
             <li className="meta pt-2 text-accent">
               Dubai Municipality registered contractor

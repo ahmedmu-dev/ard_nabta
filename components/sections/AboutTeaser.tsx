@@ -22,8 +22,8 @@ const FACTS = [
   },
   {
     label: "Base",
-    value: "Dubai",
-    note: "Municipality registered contractor",
+    value: "Plot 804-0",
+    note: "Dubai Municipality building",
   },
 ];
 

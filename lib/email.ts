@@ -76,42 +76,46 @@ function noReplyFrom(smtpUser: string): string {
 }
 
 function buildAutoReply(auto: AutoReply): { subject: string; text: string } {
-  const firstName = auto.name.split(/\s+/)[0] || auto.name;
+  const name = auto.name.trim() || "Sir or Madam";
 
   if (auto.kind === "job") {
-    const role = auto.roleTitle || "the role";
+    const role = auto.roleTitle || "the advertised position";
     return {
-      subject: `We received your application - ${SITE_NAME}`,
+      subject: `Acknowledgement of your application - ${SITE_NAME}`,
       text: [
-        `Hello ${firstName},`,
+        `Dear ${name},`,
         "",
-        `Thank you for applying for ${role} at ${SITE_NAME}.`,
+        `Thank you for your application for the position of ${role} at ${SITE_NAME}.`,
         "",
-        "We have received your application and CV. Our team reviews submissions carefully and will contact you if there is a match.",
+        "This message confirms that your application and curriculum vitae have been received. Applications are reviewed by our team. You will be contacted should your experience meet the requirements of the role.",
         "",
-        "This is an automated message from NO REPLY. Please do not reply to this email.",
+        "Please note that this acknowledgement is issued from an unmonitored address. Kindly do not reply to this email.",
         "",
-        "If you need to reach us, use the contact form on ardnabta.com or call 052 507 9810.",
+        "For any enquiry regarding your application, please telephone 052 507 9810.",
         "",
+        "Yours faithfully,",
         SITE_NAME,
+        "Dubai, United Arab Emirates",
       ].join("\n"),
     };
   }
 
   return {
-    subject: `We received your quote request - ${SITE_NAME}`,
+    subject: `Acknowledgement of your quotation request - ${SITE_NAME}`,
     text: [
-      `Hello ${firstName},`,
+      `Dear ${name},`,
       "",
       `Thank you for contacting ${SITE_NAME}.`,
       "",
-      "We have received your project quote request. A team member will review your notes and follow up with next steps and a site discussion.",
+      "This message confirms that your request for a quotation has been received. Our team will review the information you have submitted and will contact you regarding the next steps.",
       "",
-      "This is an automated message from NO REPLY. Please do not reply to this email.",
+      "Please note that this acknowledgement is issued from an unmonitored address. Kindly do not reply to this email.",
       "",
-      "If your matter is urgent, call 052 507 9810.",
+      "Should the matter be urgent, please telephone 052 507 9810.",
       "",
+      "Yours faithfully,",
       SITE_NAME,
+      "Dubai, United Arab Emirates",
     ].join("\n"),
   };
 }
@@ -197,7 +201,7 @@ export async function sendToInfoInbox(
         return {
           ok: false,
           error:
-            "Your details reached info@ardnabta.com, but the NO REPLY confirmation could not be sent. Call 052 507 9810 if you need an immediate reply.",
+            "Your enquiry was received at info@ardnabta.com, but the acknowledgement could not be sent. Please telephone 052 507 9810 if the matter is urgent.",
         };
       }
 
@@ -208,10 +212,12 @@ export async function sendToInfoInbox(
           await transporter.sendMail({
             from: noReplyFrom(smtpUser),
             to: inbox,
-            subject: `NO REPLY sent to ${visitor}`,
-            text: [`Auto-reply delivered to ${visitor}.`, "", reply.text].join(
-              "\n"
-            ),
+            subject: `Acknowledgement issued to ${visitor}`,
+            text: [
+              `An acknowledgement has been issued to ${visitor} from an unmonitored address.`,
+              "",
+              reply.text,
+            ].join("\n"),
             envelope: {
               from: smtpUser,
               to: inbox,

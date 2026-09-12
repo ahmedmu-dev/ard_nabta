@@ -67,11 +67,12 @@ export default function ContactForm() {
     return (
       <div role="status" className="border-2 border-ink bg-paper p-8">
         <h3 className="font-display text-xl uppercase tracking-tight text-ink">
-          Message sent
+          Enquiry received
         </h3>
         <p className="mt-3 text-sm leading-relaxed text-muted">
-          Your project brief was delivered to {CONTACT.emailInfo}. A NO REPLY
-          confirmation was also sent to {values.email}.
+          Thank you. Your enquiry has been received at {CONTACT.emailInfo}. An
+          acknowledgement has been sent to {values.email} from an unmonitored
+          address. Please do not reply to that message.
         </p>
       </div>
     );

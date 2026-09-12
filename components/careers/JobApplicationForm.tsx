@@ -103,12 +103,13 @@ export default function JobApplicationForm({
     return (
       <div role="status" className="border-2 border-ink bg-paper p-8">
         <h3 className="font-display text-xl uppercase tracking-tight text-ink">
-          Application sent
+          Application received
         </h3>
         <p className="mt-3 text-sm leading-relaxed text-muted">
-          Your application for {roleTitle} was delivered to {CONTACT.emailInfo},
-          including your CV. A NO REPLY confirmation was also sent to{" "}
-          {values.email}.
+          Thank you. Your application for {roleTitle} has been received at{" "}
+          {CONTACT.emailInfo}, including your curriculum vitae. An
+          acknowledgement has been sent to {values.email} from an unmonitored
+          address. Please do not reply to that message.
         </p>
       </div>
     );

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { JOBS } from "@/lib/data/jobs";
-import { fieldsToText, isHoneypotFilled, sendToInfoInbox } from "@/lib/email";
+import { fieldsToText, sendToInfoInbox } from "@/lib/email";
 
 export const runtime = "nodejs";
 
@@ -17,10 +17,6 @@ export async function POST(request: Request) {
     form = await request.formData();
   } catch {
     return NextResponse.json({ error: "Invalid request." }, { status: 400 });
-  }
-
-  if (isHoneypotFilled(form.get("hp_field"))) {
-    return NextResponse.json({ ok: true });
   }
 
   const roleSlug = String(form.get("role") ?? "").trim();

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { fieldsToText, isHoneypotFilled, sendToInfoInbox } from "@/lib/email";
+import { fieldsToText, sendToInfoInbox } from "@/lib/email";
 
 export const runtime = "nodejs";
 
@@ -17,10 +17,6 @@ export async function POST(request: Request) {
     body = (await request.json()) as ContactBody;
   } catch {
     return NextResponse.json({ error: "Invalid request." }, { status: 400 });
-  }
-
-  if (isHoneypotFilled(body.hp_field)) {
-    return NextResponse.json({ ok: true });
   }
 
   const name = body.name?.trim() ?? "";

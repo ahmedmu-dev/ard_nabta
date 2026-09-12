@@ -70,8 +70,8 @@ export default function ContactForm() {
           Message sent
         </h3>
         <p className="mt-3 text-sm leading-relaxed text-muted">
-          Your project brief was delivered to {CONTACT.emailInfo}. We will
-          follow up on next steps.
+          Your project brief was delivered to {CONTACT.emailInfo}. A NO REPLY
+          confirmation was also sent to {values.email}.
         </p>
       </div>
     );

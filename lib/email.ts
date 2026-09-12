@@ -171,26 +171,58 @@ export async function sendToInfoInbox(
 
     if (autoReply) {
       const reply = buildAutoReply(autoReply);
+      const visitor = autoReply.to.trim();
+      const inbox = to.trim();
+      const sameInbox = visitor.toLowerCase() === inbox.toLowerCase();
+
       try {
         const autoInfo = await transporter.sendMail({
           from: noReplyFrom(smtpUser),
-          to: autoReply.to,
+          to: visitor,
           subject: reply.subject,
           text: reply.text,
           envelope: {
             from: smtpUser,
-            to: autoReply.to,
+            to: visitor,
           },
         });
         console.info("[email] auto-reply accepted", {
           messageId: autoInfo.messageId,
-          to: autoReply.to,
+          to: visitor,
         });
       } catch (autoErr) {
-        console.error(
-          "[email] auto-reply failed:",
-          autoErr instanceof Error ? autoErr.message : autoErr
-        );
+        const autoMessage =
+          autoErr instanceof Error ? autoErr.message : "Auto-reply failed.";
+        console.error("[email] auto-reply failed:", autoMessage);
+        return {
+          ok: false,
+          error:
+            "Your details reached info@ardnabta.com, but the NO REPLY confirmation could not be sent. Call 052 507 9810 if you need an immediate reply.",
+        };
+      }
+
+      // Copy into the watched inbox so NO REPLY is visible even when the
+      // visitor uses a different address. Skip if that would duplicate.
+      if (!sameInbox) {
+        try {
+          await transporter.sendMail({
+            from: noReplyFrom(smtpUser),
+            to: inbox,
+            subject: `NO REPLY sent to ${visitor}`,
+            text: [`Auto-reply delivered to ${visitor}.`, "", reply.text].join(
+              "\n"
+            ),
+            envelope: {
+              from: smtpUser,
+              to: inbox,
+            },
+          });
+        } catch (copyErr) {
+          console.error(
+            "[email] NO REPLY inbox copy failed:",
+            copyErr instanceof Error ? copyErr.message : copyErr
+          );
+        }
       }
     }
 

@@ -2,6 +2,25 @@ import type { Project } from "@/lib/types";
 
 export const PROJECTS: Project[] = [
   {
+    slug: "new-villa-structure-hatta",
+    name: "New Villa Structure - Hatta",
+    sector: "New Build",
+    location: "Hatta, Dubai",
+    year: "2026",
+    oneLiner:
+      "G+1 private villa in structure: concrete frame, openings, and site works on an active Hatta plot.",
+    details: [
+      "Ground and first floor concrete structure",
+      "Openings set in the envelope",
+      "Scaffold and site works in progress",
+      "Ard Nabta site board on the plot",
+    ],
+    image: {
+      src: "/images/samples/project-05/01-structure-corner.jpg",
+      alt: "Concrete villa structure under construction in Hatta",
+    },
+  },
+  {
     slug: "private-villa-hatta",
     name: "Private Villa - Hatta",
     sector: "New Build",

@@ -6,6 +6,29 @@ import type { SampleProject } from "@/lib/types";
  */
 export const SAMPLE_PROJECTS: SampleProject[] = [
   {
+    slug: "new-villa-structure-hatta",
+    name: "New Villa Structure - Hatta",
+    sector: "New Build",
+    location: "Hatta, Dubai",
+    year: "2026",
+    oneLiner:
+      "G+1 private villa in structure: concrete frame, openings, and site works on an active Hatta plot.",
+    images: [
+      {
+        src: "/images/samples/project-05/01-structure-corner.jpg",
+        alt: "Concrete villa structure under construction in Hatta",
+      },
+      {
+        src: "/images/samples/project-05/02-site-board.jpg",
+        alt: "Ard Nabta site board in front of a Hatta villa under construction",
+      },
+      {
+        src: "/images/samples/project-05/03-side-elevation.jpg",
+        alt: "Side elevation of a Hatta villa at structure stage",
+      },
+    ],
+  },
+  {
     slug: "villa-modification-hatta",
     name: "Villa Modification — Hatta",
     sector: "Modification",

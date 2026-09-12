@@ -2,6 +2,13 @@ import type { NewsItem } from "@/lib/types";
 
 export const NEWS_ITEMS: NewsItem[] = [
   {
+    slug: "new-villa-structure-underway-hatta",
+    date: "September 2026",
+    headline: "New Villa Structure Underway in Hatta",
+    summary:
+      "Structure is on site for a ground and first floor private villa in Hatta, with openings set, scaffold in place, and site works continuing.",
+  },
+  {
     slug: "villa-extension-boundary-wall-completed",
     date: "July 2026",
     headline: "Villa Extension & Boundary Wall Completed in Hatta",
